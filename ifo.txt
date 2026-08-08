@@ -1,0 +1,81 @@
+Create a WEBSITE HERO BANNER, NOT A POSTER.
+
+Canvas size: 1920 × 700 pixels (ultra-wide landscape).
+
+IMPORTANT:
+This image will be displayed inside a website hero container with CSS:
+
+className="relative w-full h-[180px] sm:h-[280px] lg:h-[420px]"
+
+The image will use object-cover, so the top, bottom, left, and right edges may be cropped.
+
+Design using a SAFE AREA.
+
+• Keep ALL text and products inside the CENTER 60% of the canvas.
+• Leave at least 180px empty space at the top.
+• Leave at least 170px empty space at the bottom.
+• Leave about 140px empty on both left and right edges.
+• Never place text near any edge.
+
+Background:
+Luxury minimal Apple-style.
+Very soft sky blue gradient (#F8FAFC → #E0F2FE → #BAE6FD).
+Soft lighting.
+Premium marble floor.
+Glass circles behind the products.
+Floating blueberries.
+Small white flowers.
+Very clean with lots of negative space.
+
+RIGHT SIDE:
+Display only these two products.
+
+• Posh Perfumes BLUEBERRY MUSK 100ml
+• Al Nuaim BLUEBERRY MUSK 6ml
+
+Products should occupy about 35% of the banner width.
+
+Use elegant white marble podiums.
+
+LEFT SIDE:
+
+Blue rounded pill:
+✨ COMBO OFFER
+
+Large heading:
+
+BLUEBERRY
+MUSK COMBO
+
+Subheading:
+
+100ml Perfume + 6ml Attar
+
+Small line:
+
+Fresh. Elegant. Unforgettable.
+
+Large premium price card:
+
+ONLY
+Rs. 1499
+
+Dark navy rounded button:
+
+SHOP NOW
+
+Keep every text element aligned vertically in the middle of the banner.
+
+Typography:
+Minimal.
+Apple-inspired.
+Luxury.
+Bold.
+Modern.
+
+Do NOT create a poster.
+Do NOT fill the entire canvas with content.
+Do NOT place anything near the top or bottom edges.
+Everything must fit perfectly inside a website hero banner that will be cropped using object-cover.
+
+The final design should look like a premium luxury perfume website hero similar to Dior, Chanel, or Apple product landing pages with generous empty space.
