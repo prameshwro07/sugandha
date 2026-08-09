@@ -116,6 +116,7 @@ export function CheckoutClient() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
     setValue,
   } = useForm<OrderCreateInput>({
@@ -129,6 +130,35 @@ export function CheckoutClient() {
       address: "",
     },
   });
+
+  useEffect(() => {
+  async function loadProfile() {
+    try {
+      const response = await fetch("/api/profile/details");
+
+      if (!response.ok) {
+        return;
+      }
+
+      const data = await response.json();
+
+      if (!data.user) {
+        return;
+      }
+
+      reset({
+        customerName: data.user.name ?? "",
+        email: data.user.email ?? "",
+        phone: data.user.phone ?? "",
+        address: data.user.address ?? "",
+      });
+    } catch (error) {
+      console.error("Failed to load profile details:", error);
+    }
+  }
+
+  loadProfile();
+}, [reset]);
 
   // keep products in sync with cart
   useEffect(() => {

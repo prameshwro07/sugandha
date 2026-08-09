@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { products, formatPrice } from "@/lib/products";
-import { Search, ShoppingCart, Menu, X, House, ShoppingBag, Phone, Info } from "lucide-react";
+import { Search, House, ShoppingBag, Phone, Info, UserRound } from "lucide-react";
 import { useCart } from "@/src/store/cart";
 import { useRouter } from "next/navigation";
 import AnnouncementBar from "./announcementBar";
@@ -337,9 +337,16 @@ export function SiteHeader() {
             </div>
             {/* Cart */}
             <Link
+              href="/profile"
+              className="relative rounded-full p-2 shrink-0 hover:bg-sky-100     transition-transform duration-150
+              active:scale-90"
+            >
+              <UserRound size={18} />
+            </Link>
+            <Link
               href="/cart"
-              className="relative rounded-full p-2 transition shrink-0 hover:bg-sky-100     transition-transform duration-150
-    active:scale-90"
+              className="relative rounded-full p-2 shrink-0 hover:bg-sky-100     transition-transform duration-150
+              active:scale-90"
             >
               <motion.div animate={controls}>
                 <ShoppingBag size={18} />
@@ -351,7 +358,6 @@ export function SiteHeader() {
                 </span>
               )}
             </Link>
-
           </div>
         </div>
       </header>
