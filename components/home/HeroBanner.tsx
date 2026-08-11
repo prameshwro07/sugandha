@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const banners = [
 //   "/hero1.jpg",
-  "/commingSoonBanner.png",
+  // "/commingSoonBanner.png",
   "/posh2.png",
   "/hero3.png",
 ];
@@ -16,7 +16,7 @@ export default function HeroBanner() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % banners.length);
-    }, 10000); // Change every 4 seconds
+    }, 4000); // Change every 4 seconds
 
     return () => clearInterval(interval);
   }, []);

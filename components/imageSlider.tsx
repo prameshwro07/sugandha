@@ -19,7 +19,7 @@ export default function ImageSlider({ images, alt, className = "aspect-square", 
 
   return (
     // <div className="relative aspect-square overflow-hidden rounded-xl bg-sky-50">
-    <div className={`relative overflow-hidden rounded-xl bg-sky-50 ${className}`}>
+    <div className={`relative overflow-hidden  bg-sky-50 ${className}`}>
       <Swiper
         modules={[Autoplay, Pagination]}
         slidesPerView={1}

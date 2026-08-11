@@ -39,15 +39,14 @@ export function SiteFooter() {
                 Home
               </Link>
             </li>
-
-            {/* <li>
+             <li>
               <Link
                 href="/shop"
                 className="text-slate-300 transition hover:text-sky-500"
               >
                 Shop
               </Link>
-            </li> */}
+            </li> 
 
             <li>
               <Link

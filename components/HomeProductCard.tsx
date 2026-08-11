@@ -18,63 +18,36 @@ export default function HomeProductCard({ product }: Props) {
   const addToCart = useCart((state) => state.addToCart);
   const [showAdded, setShowAdded] = useState(false);
 
+  // Show only the first two words
+  const shortName = product.name.split(" ").slice(0, 2).join(" ");
+
   return (
-    <div
-      onClick={() => router.push(`/product/${product.slug}`)}
-      className="
-        group
-        w-full
-        overflow-hidden
-        rounded-2xl
-        bg-white
-        text-left
-        shadow-[0_4px_20px_rgba(15,23,42,0.06)]
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-[0_12px_30px_rgba(15,23,42,0.10)]
-      "
-    >
+    <div className="group w-full text-left">
       {/* Product Image */}
-      <div className="relative aspect-square overflow-hidden bg-slate-50">
+      <div
+        onClick={() => router.push(`/product/${product.slug}`)}
+        className="
+          relative
+          aspect-square
+          w-full
+          cursor-pointer
+          overflow-hidden
+          bg-slate-50
+        "
+      >
         <Image
-          src={product.images[0]}
+          src={product.images?.[0] || "/placeholder.png"}
           alt={product.name}
           fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="
-            object-contain
-            p-3
-            transition-transform
-            duration-500
-            group-hover:scale-105
-          "
-          sizes="(max-width: 640px) 45vw, (max-width: 1280px) 30vw, 250px"
+    object-contain
+    transition-transform
+    duration-500
+    ease-out
+    group-hover:scale-[1.04]
+  "
         />
-      </div>
-
-      {/* Product Details */}
-      <div className="relative p-3 sm:p-4">
-
-        {/* Product Name */}
-        <h3 className="truncate text-sm font-semibold text-slate-900 sm:text-base">
-          {product.name}
-        </h3>
-
-        {/* Rating */}
-        <div className="mt-1.5 flex items-center">
-          <span className="text-[11px] tracking-tight text-yellow-500 sm:text-sm">
-            ★★★★★
-          </span>
-
-          <span className="ml-1.5 text-[10px] text-slate-400 sm:text-xs">
-            ({product.rating})
-          </span>
-        </div>
-
-        {/* Price */}
-        <p className="mt-1.5 text-base font-bold text-sky-600 sm:text-lg">
-          {formatPrice(product.price)}
-        </p>
 
         {/* Added to Cart Message */}
         <AnimatePresence>
@@ -86,13 +59,13 @@ export default function HomeProductCard({ product }: Props) {
               transition={{ duration: 0.2 }}
               className="
                 absolute
-                bottom-16
+                bottom-4
                 left-1/2
                 z-20
                 -translate-x-1/2
                 whitespace-nowrap
-                rounded-lg
-                bg-slate-800
+                rounded-full
+                bg-slate-900
                 px-3
                 py-2
                 text-[11px]
@@ -105,6 +78,47 @@ export default function HomeProductCard({ product }: Props) {
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      {/* Compact Product Details */}
+      <div className="pt-2.5">
+        {/* Product Name */}
+        <button
+          onClick={() => router.push(`/product/${product.slug}`)}
+          className="
+            block
+            w-full
+            truncate
+            text-left
+            text-sm
+            font-semibold
+            leading-tight
+            tracking-tight
+            text-slate-900
+            transition-colors
+            duration-200
+            hover:text-sky-600
+            sm:text-base
+          "
+        >
+          {shortName}
+        </button>
+
+        {/* Rating */}
+        <div className="mt-1 flex items-center">
+          <span className="text-[11px] leading-none tracking-tight text-yellow-500">
+            ★★★★★
+          </span>
+
+          <span className="ml-1 text-[10px] leading-none text-slate-400 sm:text-xs">
+            ({product.rating})
+          </span>
+        </div>
+
+        {/* Price */}
+        <p className="mt-1 text-sm font-bold leading-none text-sky-600 sm:text-base">
+          {formatPrice(product.price)}
+        </p>
 
         {/* Add to Cart */}
         <button
@@ -120,17 +134,20 @@ export default function HomeProductCard({ product }: Props) {
             }, 1500);
           }}
           className="
-            mt-3
+            mt-2.5
             h-9
             w-full
-            rounded-xl
-            bg-sky-500
+            border
+            border-slate-200
+            bg-white
             text-xs
             font-semibold
-            text-white
+            text-slate-800
             transition-all
             duration-200
-            hover:bg-sky-600
+            hover:border-sky-500
+            hover:bg-sky-500
+            hover:text-white
             active:scale-[0.98]
             sm:h-10
             sm:text-sm

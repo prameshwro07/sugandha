@@ -181,9 +181,9 @@ export default async function ProfilePage() {
             </section>
 
             {/* Sign Out */}
-            <section className="rounded-3xl border border-red-600 bg-white p-3 shadow-sm sm:p-4">
+            {/* <section className="rounded-3xl border border-red-600 bg-white p-3 shadow-sm sm:p-4">
               <SignOutButton />
-            </section>
+            </section> */}
 
             {/* Small footer */}
             <p className="pb-5 text-center text-xs text-slate-400">

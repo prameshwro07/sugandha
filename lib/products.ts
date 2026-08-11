@@ -26,6 +26,17 @@ export type Product = {
   notes: string;
 };
 
+export type ComboOffer = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  image: string;
+  originalPrice: number;
+  price: number;
+  items: string[];
+};
+
 export const brand = {
   name: "Sugandha Attar",
   siteUrl:
@@ -67,9 +78,9 @@ export const products: Product[] = [
     originalPrice: 1799,
 
     images: [
-      "/productImages/blueBerryMusk1.jpg",
-      "/productImages/blueBerryMusk2.webp",
-      "/productImages/blueBerryMusk3.webp",
+      "/productImages/blueberry.png",
+      "/productImages/blueberry1.png",
+      "/productImages/blueberry2.png",
     ],
 
     shortDescription: "Fresh fruity premium attar.",
@@ -108,9 +119,12 @@ export const products: Product[] = [
     originalPrice: 1799,
 
     images: [
-      "/productImages/cr7Attar1.jpg",
-      "/productImages/cr7Attar2.jpg",
-      "/productImages/cr7Attar3.jpg",
+      "/productImages/cr7.png",
+      "/productImages/cr71.png",
+      "/productImages/cr72.png",
+      "/productImages/cr73.png",
+      "/productImages/cr74.png",
+      "/productImages/cr75.png",
     ],
 
     shortDescription: "Fresh fruity premium attar.",
@@ -185,7 +199,7 @@ export const products: Product[] = [
     originalPrice: 1799,
 
     images: [
-      "/productImages/chocolateMusk1.webp",
+      "/productImages/chocolatemusk.png",
       "/productImages/chocolateMusk2.webp",
       "/productImages/chocolateMusk3.jpg",
     ],
@@ -250,6 +264,19 @@ export const products: Product[] = [
     reviews: 32,
 
     notes: "Tobacco, amber, white musk",
+  },
+];
+
+export const comboOffers: ComboOffer[] = [
+  {
+    id: "combo-001",
+    slug: "blueberry-cr7-combo",
+    name: "Blueberry + CR7 Combo",
+    description: "Two premium fragrances together at a special price.",
+    image: "/combos/poshBluberryMusk+ChocolateMusk.png",
+    originalPrice: 998,
+    price: 899,
+    items: ["Blueberry Musk", "CR7"],
   },
 ];
 

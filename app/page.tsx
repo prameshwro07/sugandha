@@ -14,6 +14,9 @@ import FinalCTA from "@/components/home/FinalCTA";
 import InstagramSection from "@/components/home/InstagramSection";
 import HeroBanner from "@/components/home/HeroBanner";
 import FAQ from "@/components/home/FAQ";
+import ComboOffer from "@/components/ComboOffer";
+import { comboOffers } from "@/lib/products";
+import ShopByCategory from "@/components/home/ShopByCategory";
 
 
 export default function Home() {
@@ -52,6 +55,31 @@ export default function Home() {
       <HeroBanner />
 
       <BestSellers />
+
+      <ShopByCategory />
+      {/* <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <p className="text-sm font-semibold text-sky-500">
+            SPECIAL OFFER
+          </p>
+
+          <h2 className="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">
+            Combo & Save
+          </h2>
+
+          <p className="mt-2 text-sm text-slate-500">
+            Get more of your favorite fragrances for less.
+          </p>
+        </div>
+
+        {comboOffers.map((combo) => (
+          <ComboOffer
+            key={combo.id}
+            combo={combo}
+          />
+        ))}
+      </section> */}
+
 
       <FAQ />
 

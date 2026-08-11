@@ -83,14 +83,14 @@ export function SiteHeader() {
               Home
             </Link>
 
-            {/* <Link
+            <Link
               href="/shop"
               onClick={() => setMobileMenuOpen(false)}
               className="mt-1 flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
             >
               <ShoppingBag size={16} />
               Shop
-            </Link> */}
+            </Link>
 
             <Link
               href="/about"
@@ -157,12 +157,12 @@ export function SiteHeader() {
               Home
             </Link>
 
-            {/* <Link
+            <Link
               href="/shop"
               className="text-sm font-medium transition hover:text-sky-500"
             >
               Shop
-            </Link> */}
+            </Link>
 
             <Link
               href="/about"
