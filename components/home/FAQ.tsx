@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "How long does delivery take?",
     answer:
-      "Delivery time depends on your location. We aim to deliver as quickly as possible across Nepal. Instant delivery within Kathmandu Valley is coming soon.",
+      "Delivery time depends on your location. We aim to deliver as quickly as possible across Nepal.",
   },
   {
     question: "What payment methods do you accept?",
@@ -19,55 +19,44 @@ const faqs = [
     answer:
       "Once your order is confirmed, we'll keep you updated about its status. Order tracking will also be available on our website.",
   },
-  // {
-  //   question: "Can you recommend a fragrance for me?",
-  //   answer:
-  //     "Absolutely! Use our fragrance recommendation section or message us on WhatsApp, and we'll help you find a scent that suits your preferences.",
-  // },
 ];
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-slate-50 py-12">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="bg-slate-50 pb-8">
+      <div className="w-full px-4 sm:px-6 lg:px-0">
 
-        <div className="">
-          <span className="text-sm font-semibold uppercase tracking-[0.25em] text-sky-600">
-            FAQ
-          </span>
-
-          <h2 className="mt-4 text-2xl font-medium text-slate-900">
+          <h2 className="mt-2 text-xl font-medium text-slate-900">
             Frequently Asked Questions
           </h2>
-        </div>
 
-        <div className="mt-12 space-y-2">
+        <div className="mt-6 space-y-2">
           {faqs.map((faq, index) => (
             <div
               key={faq.question}
-              className="rounded-xl border border-slate-200 bg-white"
+              className="rounded-lg border border-slate-200 bg-white"
             >
               <button
                 onClick={() =>
                   setOpen(open === index ? null : index)
                 }
-                className="flex w-full items-center justify-between p-6 text-left"
+                className="flex w-full items-center justify-between px-5 py-4 text-left"
               >
-                <span className="font-semibold text-slate-900">
+                <span className="text-sm font-semibold text-slate-900">
                   {faq.question}
                 </span>
 
                 <ChevronDown
-                  className={`transition ${
-                    open === index ? "rotate-180" : ""
-                  }`}
+                  size={18}
+                  className={`shrink-0 transition ${open === index ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
               {open === index && (
-                <div className="px-6 pb-6 text-slate-600">
+                <div className="px-5 pb-4 text-sm leading-5 text-slate-600">
                   {faq.answer}
                 </div>
               )}

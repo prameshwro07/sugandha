@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { products } from "@/lib/products";
 import { ProductCard } from "./ProductCard";
+import  HomeProductCard  from "./HomeProductCard"
 
 type ShopContentProps = {
     initialCategory?: string;
@@ -49,10 +50,7 @@ export default function ShopContent({
 
     return (
         <>
-            {/* =====================================================
-                SHOP INTRO
-                ===================================================== */}
-            <div className="mb-8 px-6 py-6 w-full text-center sm:mb-10">
+            <div className="mb-8 px-4 py-1 w-full text-center sm:mb-10">
                 <p className="text-sm font-medium text-sky-500">
                     Home / Shop
                 </p>
@@ -67,53 +65,61 @@ export default function ShopContent({
                 </p>
             </div>
 
-            {/* =====================================================
-    MOBILE CATEGORY
-    ===================================================== */}
             <div className="mb-7 md:hidden">
+                <h2 className="text-center text-sm font-bold uppercase tracking-wide text-slate-900 pb-4">
+                    Shop By Category
+                </h2>
 
                 {/* Category heading */}
-                <div className="mb-3 flex items-center px-6">
-                    <h2 className="flex-1 text-center text-sm font-bold uppercase tracking-wide text-slate-900">
-                        Shop By Category
-                    </h2>
+                <div className="relative mb-3 px-6">
 
-                    <span className="ml-3 shrink-0 whitespace-nowrap text-xs text-slate-400">
+
+                    <span className="absolute right-6 top-1/2 -translate-y-1/2 whitespace-nowrap text-xs text-slate-400">
                         Swipe →
                     </span>
                 </div>
 
                 {/* Scrollable categories */}
-                <div className="overflow-x-auto px-7 pb-1 scrollbar-hide">
-                    <div className="flex w-max gap-2">
-                        {categories.map((category) => {
-                            const isSelected =
-                                selectedCategory === category;
+                <div className="relative">
 
-                            return (
-                                <button
-                                    key={category}
-                                    onClick={() =>
-                                        setSelectedCategory(category)
-                                    }
-                                    className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition ${isSelected
+                    {/* Top Divider */}
+                    <div className="mx-6 border-t border-slate-200" />
+
+                    {/* Categories */}
+                    <div className="overflow-x-auto px-7 py-3 scrollbar-hide">
+                        <div className="flex w-max gap-2">
+
+                            {categories.map((category) => {
+                                const isSelected =
+                                    selectedCategory === category;
+
+                                return (
+                                    <button
+                                        key={category}
+                                        onClick={() =>
+                                            setSelectedCategory(category)
+                                        }
+                                        className={`whitespace-nowrap rounded-full px-6 py-1.5 text-sm font-medium transition ${isSelected
                                             ? "bg-sky-400 text-slate-900 shadow-sm"
-                                            : "border border-slate-200 bg-white text-slate-600"
-                                        }`}
-                                >
-                                    {formatCategory(category)}
-                                </button>
-                            );
-                        })}
+                                            : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50"
+                                            }`}
+                                    >
+                                        {formatCategory(category)}
+                                    </button>
+                                );
+                            })}
+
+                        </div>
                     </div>
+
+                    {/* Bottom Divider */}
+                    <div className="mx-6 border-t border-slate-200" />
+
                 </div>
 
             </div>
 
 
-            {/* =====================================================
-    MOBILE PRODUCT COUNT
-    ===================================================== */}
             <div className="mb-6 px-6 md:hidden">
                 <p className="text-slate-500">
                     Showing {filteredProducts.length} Products
@@ -121,10 +127,7 @@ export default function ShopContent({
             </div>
 
 
-            {/* =====================================================
-    MOBILE PRODUCTS
-    ===================================================== */}
-            <div className="grid grid-cols-2 gap-3 px-6 md:hidden">
+            <div className="grid grid-cols-2 gap-3 md:hidden px-6">
                 {filteredProducts.map((product) => (
                     <ProductCard
                         key={product.id}
@@ -133,30 +136,11 @@ export default function ShopContent({
                 ))}
             </div>
 
-            {/* =====================================================
-                TABLET + DESKTOP
-                One full-width component
-                ===================================================== */}
             <div className="hidden w-full md:block">
 
-                {/* =========================================================
-        FULL-WIDTH SHOP BORDER
-        ========================================================= */}
                 <div className="w-full border-y border-slate-200">
-
-                    {/* =====================================================
-            SAME CONTAINER / PADDING AS HEADER
-            ===================================================== */}
                     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-
-                        {/* =================================================
-                CATEGORY + PRODUCTS
-                ================================================= */}
                         <div className="flex w-full items-stretch">
-
-                            {/* =================================================
-                    CATEGORY SIDEBAR
-                    ================================================= */}
                             <aside
                                 className="
                         w-[180px]
@@ -232,11 +216,6 @@ export default function ShopContent({
                                 </div>
 
                             </aside>
-
-
-                            {/* =================================================
-                    PRODUCT SHOWCASE
-                    ================================================= */}
                             <section
                                 className="
                         min-w-0
@@ -248,10 +227,6 @@ export default function ShopContent({
                         xl:pl-7
                     "
                             >
-
-                                {/* =================================================
-                        PRODUCT HEADER
-                        ================================================= */}
                                 <div
                                     className="
                             mb-5
@@ -283,21 +258,19 @@ export default function ShopContent({
 
                                 <div
                                     className="
-                            grid
+        grid
+        grid-cols-3
+        gap-4
+        lg:grid-cols-4
+        lg:gap-4
+        2xl:grid-cols-5
+        2xl:gap-5
+    "
 
-                            grid-cols-2
-                            gap-4
-
-                            lg:grid-cols-4
-                            lg:gap-4
-
-                            2xl:grid-cols-5
-                            2xl:gap-5
-                        "
                                 >
 
                                     {filteredProducts.map((product) => (
-                                        <ProductCard
+                                        <HomeProductCard
                                             key={product.id}
                                             product={product}
                                         />

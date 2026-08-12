@@ -83,36 +83,38 @@ export default function HomeProductCard({ product }: Props) {
       {/* Compact Product Details */}
       <div className="pt-2.5">
         {/* Product Name */}
-        <button
-          onClick={() => router.push(`/product/${product.slug}`)}
-          className="
-            block
-            w-full
-            truncate
-            text-left
-            text-sm
-            font-semibold
-            leading-tight
-            tracking-tight
-            text-slate-900
-            transition-colors
-            duration-200
-            hover:text-sky-600
-            sm:text-base
-          "
-        >
-          {shortName}
-        </button>
+        <div className="flex min-w-0 items-center gap-1.5">
+          {/* Product Name */}
+          <button
+            onClick={() => router.push(`/product/${product.slug}`)}
+            className="
+      min-w-0
+      truncate
+      text-left
+      text-sm
+      font-semibold
+      leading-tight
+      tracking-tight
+      text-slate-900
+      transition-colors
+      duration-200
+      hover:text-sky-600
+      sm:text-base
+    "
+          >
+            {shortName}
+          </button>
 
-        {/* Rating */}
-        <div className="mt-1 flex items-center">
-          <span className="text-[11px] leading-none tracking-tight text-yellow-500">
-            ★★★★★
-          </span>
+          {/* Rating */}
+          <div className="flex shrink-0 items-center whitespace-nowrap">
+            <span className="text-[11px] leading-none text-yellow-500">
+              ★
+            </span>
 
-          <span className="ml-1 text-[10px] leading-none text-slate-400 sm:text-xs">
-            ({product.rating})
-          </span>
+            <span className="ml-0.5 text-[10px] leading-none text-slate-400 sm:text-xs">
+              ({product.rating})
+            </span>
+          </div>
         </div>
 
         {/* Price */}

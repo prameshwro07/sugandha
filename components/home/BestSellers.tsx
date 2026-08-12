@@ -3,6 +3,7 @@ import { products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import ProductGallery from "../ProductGallery";
 import HomeProductCard from "../HomeProductCard";
+import { ArrowRight } from "lucide-react";
 
 export default function BestSellers() {
   // Select your featured products
@@ -12,52 +13,67 @@ export default function BestSellers() {
       "blueberry-musk",
       "chocolate-musk",
       "french-tobacco",
+      "red-vanilla",
     ].includes(product.slug)
   );
 
   return (
-    <section className="bg-slate-50 py-8">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="bg-slate-50 py-5 lg:py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-0">
 
-        <div className="flex items-end justify-between">
+        <div className="flex items-center justify-between">
+
           <div>
-            <span className="text-sm font-semibold uppercase tracking-[0.25em] text-sky-600">
+
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">
               Best Sellers
             </span>
 
-            {/* <h2 className="mt-4 text-4xl font-bold text-slate-900">
-              Customer Favorites
-            </h2> */}
+            <h2 className="mt-1.5 text-lg font-medium text-slate-900 lg:text-xl">
+              Customer's Favorites
+            </h2>
 
-            <p className="mt-4 max-w-2xl text-lg text-slate-600">
+            <p className="mt-1.5 max-w-xl text-sm pb-1 text-slate-600">
               Discover the fragrances our customers love the most.
             </p>
+
           </div>
 
+
+          {/* Desktop View All */}
           <Link
             href="/shop"
-            className="hidden rounded-xl border border-slate-300 px-5 py-3 font-semibold transition hover:border-sky-500 hover:text-sky-600 md:block"
+            className="hidden md:flex items-center justify-center gap-2 border border-slate-300 px-10 py-2 text-sm font-semibold transition hover:border-sky-500 hover:text-sky-600"
           >
             View All
+            <ArrowRight size={18} />
           </Link>
-        </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
-          {bestSellers.map((product) => (
-            <HomeProductCard
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6">
+          {bestSellers.map((product, index) => (
+            <div
               key={product.id}
-              product={product}
-            />
+              className={`
+        ${index >= 4 ? "hidden lg:block" : ""}
+        ${index >= 5 ? "hidden 2xl:block" : ""}
+      `}
+            >
+              <HomeProductCard product={product} />
+            </div>
           ))}
         </div>
 
-        <div className="mt-10 text-center md:hidden">
+        <div className="mt-8 text-center md:hidden">
+
           <Link
             href="/shop"
-            className="rounded-xl border border-slate-300 px-6 py-3 font-semibold transition hover:border-sky-500 hover:text-sky-600"
+            className="flex w-full items-center justify-center gap-2 border border-slate-200 px-10 py-2 font-semibold transition hover:border-sky-500 hover:text-sky-600"
           >
             View All Products
+            <ArrowRight size={18} />
           </Link>
+
         </div>
 
       </div>

@@ -32,15 +32,6 @@ export default function NotFound() {
             Go Home
           </Link>
 
-          {/* <Link
-            href="/shop"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 transition hover:border-sky-500 hover:text-sky-600"
-          >
-            <ShoppingBag className="h-5 w-5" />
-            Browse Products
-            <ArrowRight className="h-5 w-5" />
-          </Link> */}
-
         </div>
 
       </div>

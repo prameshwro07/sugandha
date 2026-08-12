@@ -5,13 +5,14 @@ import { brand } from "@/lib/products";
 
 export function SiteFooter() {
   return (
+    <>
     <footer className="border-t border-slate-200 bg-[#0F172A]">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 md:grid-cols-2 lg:grid-cols-4">
 
         {/* Brand */}
         <div>
           <Image
-            src="/sugandha_white_logo.png"
+            src="/sugandhalogo_bluev4.png"
             alt="Sugandha"
             width={200}
             height={70}
@@ -205,13 +206,10 @@ export function SiteFooter() {
           <p className="text-xs">
             © Copyright by Prameshwor Malla 2026 . All rights reserved.
           </p>
-          {/* 
-          <p>
-            Crafted with ❤️ in Nepal
-          </p> */}
 
         </div>
       </div>
     </footer>
+</>
   );
 }

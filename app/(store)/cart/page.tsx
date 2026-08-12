@@ -47,7 +47,7 @@ export default function CartPage() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="flex items-center gap-5 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
               >
                 <img
                   src={item.images[0]}
@@ -104,7 +104,7 @@ export default function CartPage() {
           </div>
 
           {/* Right Side */}
-          <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <aside className="h-fit rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">Order Summary</h2>
 
             <div className="mt-6 space-y-4">
@@ -153,9 +153,9 @@ export default function CartPage() {
               Continue Shopping
             </Link>
 
-            {/* <div className="mt-6 rounded-xl bg-green-50 p-4 text-center text-sm font-medium text-green-700">
+            <div className="mt-6 rounded-xl bg-green-50 p-4 text-center text-sm font-medium text-green-700">
               🚚 Free Delivery Inside Kathmandu Valley.
-            </div> */}
+            </div>
           </aside>
         </div>
       )}

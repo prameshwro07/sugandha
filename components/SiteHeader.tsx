@@ -50,11 +50,10 @@ export function SiteHeader() {
     };
   }, []);
   return (
-    <div className="fixed inset-x-0 top-0 z-50">
+    <div className="fixed top-0 z-50 w-full bg-white border-b border-slate-200">
       <AnnouncementBar />
 
-      <header className="bg-white border-b z-50 border-slate-200">
-        {/* Mobile drawer */}
+      <header className="mx-auto flex h-11 w-full max-w-7xl items-center px-4 justify-between">
         {/* Transparent Click Area */}
         <div
           className={`fixed inset-0 z-30 bg-transparent transition-opacity duration-300 ${mobileMenuOpen
@@ -120,118 +119,173 @@ export function SiteHeader() {
         </div>
 
         {/* Desktop */}
-        <div className="mx-auto flex h-12 max-w-7xl items-center justify-between gap-4 px-5">
-          {/* Logo */}
-          {/* <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="rounded-lg p-1.5 transition hover:bg-sky-100 block md:hidden"
-          >
-            <Menu size={16} />
-          </button> */}
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="
-    flex h-9 w-9 flex-col justify-center gap-[5px]
-    transition-transform duration-150 active:scale-90
-    md:hidden
-  "
-            aria-label="Open menu"
-          >
-            <span className="h-[2px] w-2.5 rounded-full bg-slate-700" />
-            <span className="h-[2px] w-[18px] rounded-full bg-slate-700" />
-            <span className="ml-2 h-[2px] w-2.5 rounded-full bg-slate-700" />
-          </button>
-          <Link href="/" className="hidden shrink-0 md:block">
-            <Image
-              src="/sugandhalogo_bluev4.png"
-              alt="Sugandha"
-              width={72}
-              height={26}
-            // className="h-10 w-auto"
-            />
+        <button
+          onClick={() => setMobileMenuOpen(true)}
+          className="flex h-9 w-9 flex-col justify-center gap-[5px] transition-transform duration-150 active:scale-90 md:hidden"
+          aria-label="Open menu"
+        >
+          <span className="h-[2px] w-2.5 rounded-full bg-slate-700" />
+          <span className="h-[2px] w-[18px] rounded-full bg-slate-700" />
+          <span className="ml-2 h-[2px] w-2.5 rounded-full bg-slate-700" />
+        </button>
+        <Link href="/" className="hidden shrink-0 md:block">
+          <Image
+            src="/sugandhalogo_bluev4.png"
+            alt="Sugandha"
+            width={72}
+            height={26}
+          // className="h-10 w-auto"
+          />
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 md:flex">
+          <Link href="/" className="text-sm font-medium transition hover:text-sky-500">
+            Home
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-8 md:flex">
-            <Link href="/" className="text-sm font-medium transition hover:text-sky-500">
-              Home
-            </Link>
-
-            <Link
-              href="/shop"
-              className="text-sm font-medium transition hover:text-sky-500"
-            >
-              Shop
-            </Link>
-
-            <Link
-              href="/about"
-              className="text-sm font-medium transition hover:text-sky-500"
-            >
-              About
-            </Link>
-
-            <Link
-              href="/contact"
-              className="text-sm font-medium transition hover:text-sky-500"
-            >
-              Contact
-            </Link>
-          </nav>
-
-          <div
-            ref={searchRef}
-            className="relative hidden flex-1 max-w-xl lg:block mx-2"
+          <Link
+            href="/shop"
+            className="text-sm font-medium transition hover:text-sky-500"
           >
-            <div className="flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2 h-6 focus-within:border-sky-400 focus-within:bg-white">
+            Shop
+          </Link>
+
+          <Link
+            href="/about"
+            className="text-sm font-medium transition hover:text-sky-500"
+          >
+            About
+          </Link>
+
+          <Link
+            href="/contact"
+            className="text-sm font-medium transition hover:text-sky-500"
+          >
+            Contact
+          </Link>
+        </nav>
+
+        <div
+          ref={searchRef}
+          className="relative hidden flex-1 max-w-xl lg:block mx-2"
+        >
+          <div className="flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2 h-6 focus-within:border-sky-400 focus-within:bg-white">
+            <Search size={12} className="text-slate-400" />
+
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search premium attars..."
+              className="w-full bg-transparent text-xs outline-none placeholder:text-slate-400"
+            />
+          </div>
+
+          {search.trim() !== "" && (
+            <div
+              className="absolute left-0 top-[calc(100%+8px)] z-50 w-full overflow-hidden rounded-xl border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+              {/* Results */}
+              <div className="max-h-[300px] overflow-y-auto">
+                {search.trim() !== "" &&
+                  (filteredProducts.length > 0 ? (
+                    filteredProducts.map((product) => (
+                      <Link
+                        key={product.id}
+                        href={`/product/${product.slug}`}
+                        onClick={() => setSearch("")}
+                        className="flex cursor-pointer items-center gap-4 p-4 transition-all duration-200 hover:bg-sky-50"
+                      >
+                        <Image
+                          src={product.images[0]}
+                          alt={product.name}
+                          width={65}
+                          height={65}
+                          className="h-16 w-16 rounded-xl object-cover border border-slate-100"
+                        />
+
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-slate-900">
+                            {product.name}
+                          </h3>
+                          <p className="mt-1 text-sm text-slate-500">
+                            Premium alcohol-free attar
+                          </p>
+                        </div>
+
+                        <div className="text-right">
+                          <p className="font-bold text-sky-500">
+                            {formatPrice(product.price)}
+                          </p>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="p-8 text-center">
+                      <p className="font-semibold text-slate-700">
+                        No products found
+                      </p>
+                      <p className="mt-2 text-sm text-slate-500">
+                        Try another keyword.
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+        {/* Right Side */}
+        <div className="flex items-center gap-2">
+          {/* Mobile Search */}
+          <div
+            className="relative min-w-0 flex-1 lg:hidden"
+            ref={searchRef}
+          >
+            <div className="flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 h-7 ">
               <Search size={12} className="text-slate-400" />
 
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search premium attars..."
-                className="w-full bg-transparent text-xs outline-none placeholder:text-slate-400"
+                placeholder="Search..."
+                // className=" px-2 w-full bg-transparent text-xs text-base outline-none placeholder:text-slate-400"
+                className="w-full min-w-0 bg-transparent px-2 text-xs outline-none placeholder:text-slate-400"
               />
             </div>
 
+            {/* the same results dropdown here */}
             {search.trim() !== "" && (
               <div
-                className="absolute left-0 top-[calc(100%+8px)] z-50 w-full overflow-hidden rounded-xl border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+                className="absolute left-0 mt-2 top-[calc(100%+8px)] z-50 w-full overflow-hidden rounded-xl border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
                 {/* Results */}
-                <div className="max-h-[300px] overflow-y-auto">
+                <div className="max-h-60 overflow-y-auto md:max-h-[300px]">
                   {search.trim() !== "" &&
                     (filteredProducts.length > 0 ? (
                       filteredProducts.map((product) => (
                         <div
                           key={product.id}
                           onClick={() => {
-                            console.log("clicked")
                             // router.push(`/checkout?buyNow=${product.id}`);
                             router.push(`/product/${product.slug}`);
                             setSearch("");
                           }}
-                          className="flex cursor-pointer items-center gap-4 p-4 transition-all duration-200 hover:bg-sky-50"
+                          className="flex cursor-pointer items-center gap-3 border-b border-slate-100 px-3 py-2.5 transition-colors duration-200 hover:bg-sky-50 last:border-b-0"
                         >
-                          <Image
-                            src={product.images[0]}
-                            alt={product.name}
-                            width={65}
-                            height={65}
-                            className="h-16 w-16 rounded-xl object-cover border border-slate-100"
-                          />
-
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-slate-900">
+                          <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-slate-50">
+                            <Image
+                              src={product.images[0]}
+                              alt={product.name}
+                              fill
+                              className="object-contain p-1"
+                              sizes="48px"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <h3 className="truncate text-xs font-semibold text-slate-900 sm:text-sm">
                               {product.name}
                             </h3>
-                            <p className="mt-1 text-sm text-slate-500">
-                              Premium alcohol-free attar
-                            </p>
-                          </div>
-
-                          <div className="text-right">
-                            <p className="font-bold text-sky-500">
+                            <p className="mt-0.5 text-xs font-bold text-sky-500">
                               {formatPrice(product.price)}
                             </p>
                           </div>
@@ -250,118 +304,38 @@ export function SiteHeader() {
                 </div>
               </div>
             )}
+
           </div>
-          {/* Right Side */}
-          <div className="flex items-center gap-2">
-            {/* Mobile Search */}
-            <div
-              className="relative flex-1 lg:hidden"
-              ref={searchRef}
-            >
-              <div className="flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 h-7 ">
-                <Search size={12} className="text-slate-400" />
 
-                <input
-                  type="text"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search..."
-                  className=" px-2 w-full bg-transparent text-xs text-base outline-none placeholder:text-slate-400"
-                />
-              </div>
+          <div className="flex items-center gap-1">
+  {/* Profile */}
+  <Link
+    href="/profile"
+    aria-label="Profile"
+    className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+  >
+    <UserRound size={18} strokeWidth={2} />
+  </Link>
 
-              {/* the same results dropdown here */}
-              {search.trim() !== "" && (
-                <div
-                  className="absolute left-0 mt-2 top-[calc(100%+8px)] z-50 w-full overflow-hidden rounded-xl border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
-                  {/* Results */}
-                  <div className="max-h-60 overflow-y-auto md:max-h-[300px]">
-                    {search.trim() !== "" &&
-                      (filteredProducts.length > 0 ? (
-                        filteredProducts.map((product) => (
-                          <div
-                            key={product.id}
-                            onClick={() => {
-                              // router.push(`/checkout?buyNow=${product.id}`);
-                              router.push(`/product/${product.slug}`);
-                              setSearch("");
-                            }}
-                            className="
-      flex
-      cursor-pointer
-      items-center
-      gap-3
-      border-b
-      border-slate-100
-      px-3
-      py-2.5
-      transition-colors
-      duration-200
-      hover:bg-sky-50
-      last:border-b-0
-    "
-                          >
-                            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-slate-50">
-                              <Image
-                                src={product.images[0]}
-                                alt={product.name}
-                                fill
-                                className="object-contain p-1"
-                                sizes="48px"
-                              />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <h3 className="truncate text-xs font-semibold text-slate-900 sm:text-sm">
-                                {product.name}
-                              </h3>
-                              <p className="mt-0.5 text-xs font-bold text-sky-500">
-                                {formatPrice(product.price)}
-                              </p>
-                            </div>
-                          </div>
-                        ))
-                      ) : (
-                        <div className="p-8 text-center">
-                          <p className="font-semibold text-slate-700">
-                            No products found
-                          </p>
-                          <p className="mt-2 text-sm text-slate-500">
-                            Try another keyword.
-                          </p>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              )}
+  {/* Cart */}
+  <Link
+    href="/cart"
+    aria-label="Cart"
+    className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+  >
+    <motion.div animate={controls}>
+      <ShoppingBag size={18} strokeWidth={2} />
+    </motion.div>
 
-            </div>
-            {/* Cart */}
-            <Link
-              href="/profile"
-              className="relative rounded-full p-2 shrink-0 hover:bg-sky-100     transition-transform duration-150
-              active:scale-90"
-            >
-              <UserRound size={18} />
-            </Link>
-            <Link
-              href="/cart"
-              className="relative rounded-full p-2 shrink-0 hover:bg-sky-100     transition-transform duration-150
-              active:scale-90"
-            >
-              <motion.div animate={controls}>
-                <ShoppingBag size={18} />
-              </motion.div>
-
-              {mounted && totalItems > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-sky-400 text-xs font-bold text-slate-200">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-          </div>
+    {mounted && totalItems > 0 && (
+      <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-400 text-[9px] font-bold text-white">
+        {totalItems}
+      </span>
+    )}
+  </Link>
+</div>
         </div>
       </header>
     </div>
   );
 }
-// this is new 

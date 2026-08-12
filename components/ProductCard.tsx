@@ -1,10 +1,9 @@
 "use client";
 
-import { ShoppingBag, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Product, formatPrice } from "@/lib/products";
 import { useCart } from "@/src/store/cart";
-import ImageSlider from "./imageSlider";
 import Image from "next/image";
 
 type Props = {
@@ -21,18 +20,9 @@ export function ProductCard({
   const addToCart = useCart((state) => state.addToCart);
   const router = useRouter();
 
-  // Show only the first two words
   const shortName = product.name.split(" ").slice(0, 2).join(" ");
 
   return (
-    // <article
-    //   className={`
-    //     group
-    //     w-full
-    //     text-left
-    //     ${compact ? "max-w-[210px]" : "max-w-[280px]"}
-    //   `}
-    // >
     <article className="group w-full text-left">
 
       {/* Product Image */}
@@ -45,13 +35,19 @@ export function ProductCard({
           cursor-pointer
           overflow-hidden
           bg-slate-50
+          lg:aspect-[1/0.9]
+          xl:aspect-[1/0.86]
         "
       >
         <Image
           src={product.images?.[0] || "/placeholder.png"}
           alt={product.name}
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          sizes="
+            (max-width: 640px) 50vw,
+            (max-width: 1024px) 33vw,
+            220px
+          "
           className="
             object-cover
             transition-transform
@@ -61,8 +57,11 @@ export function ProductCard({
           "
         />
       </div>
+
+
       {/* Product Details */}
-      <div className={compact ? "pt-2" : "pt-2.5"}>
+      <div className={compact ? "pt-1.5" : "pt-2"}>
+
         {/* Product Name */}
         <button
           onClick={() => router.push(`/product/${product.slug}`)}
@@ -79,31 +78,33 @@ export function ProductCard({
             transition-colors
             duration-200
             hover:text-sky-600
-            lg:text-base
+            lg:text-sm
           "
         >
           {shortName}
         </button>
 
+
         {/* Rating */}
-        <div className="mt-1 flex items-center">
-          <span className="text-[11px] leading-none tracking-tight text-yellow-500">
+        <div className="mt-0.5 flex items-center">
+          <span className="text-[10px] leading-none tracking-tight text-yellow-500">
             ★★★★★
           </span>
 
-          <span className="ml-1 text-[10px] leading-none text-slate-400 lg:text-xs">
+          <span className="ml-1 text-[10px] leading-none text-slate-400">
             ({product.rating})
           </span>
         </div>
 
+
         {/* Price */}
-        <p className="mt-1 text-sm font-bold leading-none text-sky-600 lg:text-base">
+        <p className="mt-1 text-sm font-bold leading-none text-sky-600">
           {formatPrice(product.price)}
         </p>
 
-        {/* Buttons */}
-        <div className="mt-2.5 flex w-full flex-col gap-1.5">
-          {/* Add to Cart */}
+
+        {/* Add to Cart */}
+        <div className="mt-2 flex w-full">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -111,7 +112,7 @@ export function ProductCard({
             }}
             className="
               inline-flex
-              h-9
+              h-8
               w-full
               items-center
               justify-center
@@ -129,52 +130,13 @@ export function ProductCard({
               hover:bg-sky-500
               hover:text-white
               active:scale-[0.98]
-              lg:h-10
-              lg:text-sm
+              lg:h-9
             "
           >
-            <ShoppingCart
-              size={15}
-              strokeWidth={2}
-              className="hidden sm:block"
-            />
             Add to Cart
           </button>
-
-          {/* Buy Now */}
-          {/* <button
-            onClick={(e) => {
-              e.stopPropagation();
-              router.push(`/checkout?buyNow=${product.id}`);
-            }}
-            className="
-              inline-flex
-              h-9
-              w-full
-              items-center
-              justify-center
-              gap-1.5
-              bg-sky-400
-              px-3
-              text-xs
-              font-semibold
-              text-slate-900
-              transition-all
-              duration-200
-              hover:bg-sky-300
-              active:scale-[0.98]
-              lg:h-10
-              lg:text-sm
-            "
-          >
-            <ShoppingBag
-              size={15}
-              strokeWidth={2}
-              className="hidden sm:block"
-            />
-            Buy Now
-          </button> */}
         </div>
+
       </div>
     </article>
   );

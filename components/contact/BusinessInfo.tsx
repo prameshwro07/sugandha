@@ -87,7 +87,7 @@ export default function BusinessInfo() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-7xl ">
           <span className="text-sm font-semibold uppercase tracking-[0.25em] text-sky-600">
             Business Information
           </span>

@@ -11,7 +11,7 @@ export default function CTA() {
       <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-white/20 blur-3xl" />
       <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-white/20 blur-3xl" />
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center">
+        <div className="relative mx-auto max-w-7xl px-6 w-full">
         <span className="rounded-full border border-white/30 bg-white/10 px-4 py-1 text-sm font-medium tracking-wide text-white backdrop-blur">
           YOUR NEXT FRAGRANCE AWAITS
         </span>
@@ -22,7 +22,7 @@ export default function CTA() {
           Signature Fragrance?
         </h2>
 
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-sky-100">
+        <p className="mx-auto mt-6 text-lg leading-8 text-sky-100">
           Discover carefully selected fragrances that match your personality,
           boost your confidence, and leave a lasting impression wherever you go.
         </p>

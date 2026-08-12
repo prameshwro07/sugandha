@@ -8,49 +8,49 @@ const categories = [
   {
     name: "Men",
     slug: "men",
-    image: "/categories/men2.png",
+    image: "/categories/Men.png",
     description: "Bold & confident",
   },
   {
     name: "Women",
     slug: "women",
-    image: "/categories/women.png",
+    image: "/categories/Women.png",
     description: "Elegant & captivating",
   },
   {
     name: "Unisex",
     slug: "unisex",
-    image: "/categories/unixes.png",
+    image: "/categories/Unisex.png",
     description: "Made for everyone",
   },
   {
     name: "Attar",
     slug: "attar",
-    image: "/categories/attar.jpg",
+    image: "/categories/Attars.png",
     description: "Traditional & long-lasting",
   },
   {
     name: "Perfume",
     slug: "perfume",
-    image: "/categories/perfume.jpg",
+    image: "/categories/Perfume.png",
     description: "Fresh & sophisticated",
   },
   {
     name: "Combo",
     slug: "combo",
-    image: "/categories/combo.jpg",
+    image: "/categories/Combo.png",
     description: "More fragrance, less price",
   },
   {
     name: "New",
     slug: "new",
-    image: "/categories/new.jpg",
+    image: "/categories/New.png",
     description: "new arriavals",
   },
   {
     name: "Best Seller",
     slug: "best-seller",
-    image: "/categories/best-seller.jpg",
+    image: "/categories/BestSeller.png",
     description: "out best seller"
   }
 ];
@@ -59,111 +59,59 @@ export default function ShopByCategory() {
   const router = useRouter();
 
   return (
+    <section className="bg-slate-50 py-5 lg:py-6">
 
-    <section className="w-full bg-white py-8 sm:py-10">
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="py-2 text-sm font-semibold uppercase tracking-[0.25em] text-sky-600">
+      <div className="w-full px-4 sm:px-6 lg:px-0">
+
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-600">
           Explore
         </p>
-      </div>
 
+        <h2 className="mt-1 text-xl font-medium tracking-tight text-slate-900">
+          Shop by Category
+        </h2>
 
-      {/* Blue Heading Banner */}
-      <div className="w-full bg-sky-200 py-6 sm:py-5">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p className="mt-1.5 max-w-xl text-sm pb-1 text-slate-600">
+          Choose your scent. Make it yours.
+        </p>
 
-          <h2 className="mt-2 text-xl tracking-tight text-slate-900 sm:text-3xl">
-            Shop by Category
-          </h2>
-
-          {/* <p className="mt-1.5 text-sm text-slate-900 sm:text-base">
-            Find a fragrance that matches your style and personality.
-          </p> */}
-
-        </div>
-      </div>
-
-
-      {/* Categories */}
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           className="
-        mt-6
+        mt-4
         flex
-        gap-4
+        gap-3
         overflow-x-auto
-        pb-2
+        pb-1
         [-ms-overflow-style:none]
         [scrollbar-width:none]
         [&::-webkit-scrollbar]:hidden
       "
         >
           {categories.map((category) => (
-            <button
-              key={category.slug}
-              onClick={() =>
-                router.push(`/shop?category=${category.slug}`)
-              }
-              className="
-            group
-            w-[130px]
-            shrink-0
-            text-left
-            sm:w-[150px]
-          "
-            >
-              {/* Square Image */}
-              <div className="
-            relative
-            aspect-square
-            w-full
-            rounded-full
-            overflow-hidden
-            border
-            border-sky-600
-            bg-slate-100
-            transition-transform
-            duration-300
-            group-hover:scale-[1.02]
-          ">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  fill
-                  sizes="150px"
-                  className="
-                object-cover
-                transition-transform
-                duration-500
-                group-hover:scale-105
-              "
-                />
-              </div>
+<button
+  key={category.slug}
+  onClick={() =>
+    router.push(`/shop?category=${category.slug}`)
+  }
+  className="flex w-[72px] shrink-0 flex-col items-center sm:w-[82px] md:w-[92px] lg:w-[105px] xl:w-[115px]"
+>
+  <div className="relative mx-auto aspect-square w-[72px] overflow-hidden rounded-full border border-sky-500 bg-slate-100 transition-transform duration-300 group-hover:scale-[1.02] sm:w-[82px] md:w-[92px] lg:w-[105px] xl:w-[115px]">
+    <Image
+      src={category.image}
+      alt={category.name}
+      fill
+      sizes="(min-width: 1280px) 115px, (min-width: 1024px) 105px, (min-width: 768px) 92px, (min-width: 640px) 82px, 72px"
+      className="object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
 
-              {/* Name */}
-              {/* <h3 className="
-            mt-2.5
-            text-center
-            text-sm
-            font-bold
-            text-slate-900
-            sm:text-base
-          ">
-                {category.name}
-              </h3> */}
-
-              {/* Description */}
-              {/* <p className="
-            mt-0.5
-            text-center
-            text-xs
-            text-slate-500
-          ">
-                {category.description}
-              </p> */}
-            </button>
+  <p className="mt-2 truncate text-center text-xs font-medium text-slate-700">
+    {category.name}
+  </p>
+</button>
           ))}
         </div>
+
       </div>
 
     </section>

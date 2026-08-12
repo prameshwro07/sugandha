@@ -63,6 +63,7 @@ export function CheckoutClient() {
     0,
   );
 
+
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
     null,
@@ -274,7 +275,7 @@ export function CheckoutClient() {
                   className="h-20 w-20 rounded-lg object-cover"
                 />
                 <div className="flex-1">
-                  <h3 className="font-semibold">{item.name}</h3>
+                  <h3 className="font-semibold">{item.name.split(" ").slice(0, 2).join(" ")}</h3>
 
                   {buyNowId ? (
                     <div className="mt-2 flex items-center gap-2">

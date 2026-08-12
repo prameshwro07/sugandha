@@ -78,7 +78,7 @@ export const products: Product[] = [
     originalPrice: 1799,
 
     images: [
-      "/productImages/blueberry.png",
+      "/productImages/blue.png",
       "/productImages/blueberry1.png",
       "/productImages/blueberry2.png",
     ],
@@ -113,7 +113,7 @@ export const products: Product[] = [
     id: "cr7-attar",
     slug: "cr7-attar",
 
-    name: "CR7 6ml Attar | Unisex",
+    name: "CR7 Attar 6ml | Unisex",
 
     price: 1499,
     originalPrice: 1799,
@@ -175,6 +175,7 @@ export const products: Product[] = [
       "unisex",
       "combo",
       "new",
+      "best-seller",
     ],
 
     stockStatus: "in-stock",
