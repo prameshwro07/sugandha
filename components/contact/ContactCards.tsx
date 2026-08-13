@@ -26,7 +26,7 @@ const contacts = [
     title: "Email",
     value: "support@sugandha.com",
     description: "We'll get back to you as soon as possible.",
-    href: "mailto:support@sugandha.com",
+    href: "mailto:support@shopsugandha.com",
     icon: Mail,
   },
   {

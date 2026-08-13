@@ -48,7 +48,7 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-slate-50 py-24">
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
         <div className="mx-auto max-w-7xl">
@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
             return (
               <div
                 key={feature.title}
-                className="rounded-3xl border border-slate-200 bg-white p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                className="rounded-3xl border border-slate-200 bg-slate-50 p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-100">
                   <Icon className="h-7 w-7 text-sky-600" />

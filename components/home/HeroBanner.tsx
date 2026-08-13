@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
 const banners = [
-//   "/hero1.jpg",
-  // "/commingSoonBanner.png",
-  "/posh2.png",
-  "/hero3.png",
+  {
+    src: "/posh2.png",
+    alt: "Sugandha premium perfume collection in Nepal",
+  },
+  {
+    src: "/hero3.png",
+    alt: "Sugandha attar and fragrance collection in Nepal",
+  },
 ];
 
 export default function HeroBanner() {
@@ -24,9 +27,9 @@ export default function HeroBanner() {
   return (
     <div className="relative w-full h-[160px] sm:h-[220px] md:h-[300px] lg:h-[420px] overflow-hidden">
       <Image
-        key={banners[current]}
-        src={banners[current]}
-        alt="Sugandha Banner"
+        key={banners[current].src}
+        src={banners[current].src}
+        alt={banners[current].alt}
         fill
         priority
         className="object-cover transition-opacity duration-700"

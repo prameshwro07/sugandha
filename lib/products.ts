@@ -39,8 +39,9 @@ export type ComboOffer = {
 
 export const brand = {
   name: "Sugandha Attar",
+  legalName: "Sugandha Attar",
   siteUrl:
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://shopsugandha.com",
 
   whatsappNumber:
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "",
@@ -95,6 +96,7 @@ export const products: Product[] = [
       "combo",
       "new",
       "best-seller",
+      "attar"
     ],
 
     stockStatus: "in-stock",
@@ -122,8 +124,6 @@ export const products: Product[] = [
       "/productImages/cr7.png",
       "/productImages/cr71.png",
       "/productImages/cr72.png",
-      "/productImages/cr73.png",
-      "/productImages/cr74.png",
       "/productImages/cr75.png",
     ],
 
@@ -136,6 +136,7 @@ export const products: Product[] = [
       "men",
       "unisex",
       "best-seller",
+      "attar"
     ],
 
     stockStatus: "out-of-stock",
@@ -176,6 +177,7 @@ export const products: Product[] = [
       "combo",
       "new",
       "best-seller",
+      "attar"
     ],
 
     stockStatus: "in-stock",
@@ -215,6 +217,7 @@ export const products: Product[] = [
       "combo",
       "new",
       "best-seller",
+      "attar"
     ],
 
     stockStatus: "in-stock",
@@ -253,6 +256,7 @@ export const products: Product[] = [
       "men",
       "unisex",
       "best-seller",
+      "attar"
     ],
 
     stockStatus: "out-of-stock",
@@ -265,6 +269,48 @@ export const products: Product[] = [
     reviews: 32,
 
     notes: "Tobacco, amber, white musk",
+  },
+
+    {
+    id: "posh-blueberry-musk",
+    slug: "posh-blueberry-musk",
+
+    name: "Posh Blueberry Musk 100ml Perfume | Unisex ",
+
+    price: 1499,
+    originalPrice: 1799,
+
+    images: [
+      "/productImages/poshBlueberry1.png",
+      "/productImages/poshBlueberry.png",
+      "/productImages/poshBlueberry2.png",
+    ],
+
+    shortDescription: "Fresh fruity premium perfume.",
+
+    description:
+      "A sweet fruity fragrance with long-lasting performance.",
+
+    categories: [
+      "men",
+      "women",
+      "unisex",
+      "combo",
+      "new",
+      "best-seller",
+      "perfume"
+    ],
+
+    stockStatus: "in-stock",
+
+    featured: true,
+
+    volume: "100ml",
+
+    rating: 4.8,
+    reviews: 32,
+
+    notes: "Oud, blue citrus, dry amber",
   },
 ];
 

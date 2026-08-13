@@ -47,23 +47,42 @@ export default function CartPage() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-5 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+                 className="
+    flex
+    items-center
+    gap-3
+    overflow-hidden
+    rounded-xl
+    border
+    border-slate-200
+    bg-white
+    p-4
+    shadow-sm
+    sm:gap-5
+    sm:p-5
+  "
               >
                 <img
                   src={item.images[0]}
                   alt={item.name}
-                  className="h-28 w-28 rounded-xl object-cover"
+                  className="    h-20
+    w-20
+    shrink-0
+    rounded-xl
+    object-cover
+    sm:h-28
+    sm:w-28"
                 />
 
-                <div className="flex flex-1 flex-col justify-center">
+                <div className="min-w-0 flex-1">
                   <h2 className="text-xl font-semibold">{item.name}</h2>
 
                   <p className="mt-1 text-lg font-bold text-sky-600">
                     Rs. {item.price.toLocaleString()}
                   </p>
 
-                  <div className="mt-5 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                  <div className="mt-4 flex min-w-0 items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2 sm:gap-4">
                       <span className="text-sm font-medium text-slate-600">
                         Quantity
                       </span>
@@ -92,9 +111,8 @@ export default function CartPage() {
                     </div>
 
                     <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="rounded-lg p-2 text-red-500 transition hover:bg-red-50 hover:text-red-600"
-                    >
+                      onClick={() => removeFromCart(item.id)} 
+                      className="shrink-0 rounded-lg p-2 text-red-500 transition hover:bg-red-50 hover:text-red-600">
                       <Trash2 size={20} />
                     </button>
                   </div>

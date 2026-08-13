@@ -13,7 +13,12 @@ export default async function ShopPage({
 
     return (
         <main className="min-h-[calc(100vh-100px)] py-6 w-full">
-            <ShopContent initialCategory={params.category || "all"} />
+            <ShopContent
+                initialCategory="all"
+                pageTitle="Explore Our Collection"
+                pageDescription="Discover premium alcohol-free attars crafted for every personality and every occasion."
+                breadcrumb="Home / Shop"
+            />
         </main>
     );
 }

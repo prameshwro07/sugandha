@@ -65,9 +65,9 @@ export function SiteHeader() {
 
         {/* Mobile Drawer */}
         <div
-          className={`absolute left-0 top-full z-40 flex h-[calc(100vh-6rem)] w-44 flex-col border-r border-slate-200 bg-white shadow-xl transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileMenuOpen
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-full opacity-0"
+          className={`fixed left-0 top-[68px] border-t z-40 flex h-[calc(100dvh-68px)] w-[78%] flex-col border-r border-slate-200 bg-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileMenuOpen
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-full opacity-0"
             }`}
         >
           {/* Navigation */}
@@ -190,10 +190,13 @@ export function SiteHeader() {
                 {search.trim() !== "" &&
                   (filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
-                      <Link
+                      <div
                         key={product.id}
-                        href={`/product/${product.slug}`}
-                        onClick={() => setSearch("")}
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          router.push(`/product/${product.slug}`);
+                        }}
                         className="flex cursor-pointer items-center gap-4 p-4 transition-all duration-200 hover:bg-sky-50"
                       >
                         <Image
@@ -218,7 +221,7 @@ export function SiteHeader() {
                             {formatPrice(product.price)}
                           </p>
                         </div>
-                      </Link>
+                      </div>
                     ))
                   ) : (
                     <div className="p-8 text-center">
@@ -242,15 +245,14 @@ export function SiteHeader() {
             ref={searchRef}
           >
             <div className="flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 h-7 ">
-              <Search size={12} className="text-slate-400" />
+              <Search size={16} className="text-slate-400" />
 
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search..."
-                // className=" px-2 w-full bg-transparent text-xs text-base outline-none placeholder:text-slate-400"
-                className="w-full min-w-0 bg-transparent px-2 text-xs outline-none placeholder:text-slate-400"
+                className="w-full px-2 bg-transparent text-base outline-none placeholder:text-slate-400 lg:text-xs"
               />
             </div>
 
@@ -308,32 +310,32 @@ export function SiteHeader() {
           </div>
 
           <div className="flex items-center gap-1">
-  {/* Profile */}
-  <Link
-    href="/profile"
-    aria-label="Profile"
-    className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
-  >
-    <UserRound size={18} strokeWidth={2} />
-  </Link>
+            {/* Profile */}
+            <Link
+              href="/profile"
+              aria-label="Profile"
+              className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+            >
+              <UserRound size={18} strokeWidth={2} />
+            </Link>
 
-  {/* Cart */}
-  <Link
-    href="/cart"
-    aria-label="Cart"
-    className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
-  >
-    <motion.div animate={controls}>
-      <ShoppingBag size={18} strokeWidth={2} />
-    </motion.div>
+            {/* Cart */}
+            <Link
+              href="/cart"
+              aria-label="Cart"
+              className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+            >
+              <motion.div animate={controls}>
+                <ShoppingBag size={18} strokeWidth={2} />
+              </motion.div>
 
-    {mounted && totalItems > 0 && (
-      <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-400 text-[9px] font-bold text-white">
-        {totalItems}
-      </span>
-    )}
-  </Link>
-</div>
+              {mounted && totalItems > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-400 text-[9px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          </div>
         </div>
       </header>
     </div>

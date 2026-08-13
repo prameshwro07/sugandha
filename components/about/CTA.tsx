@@ -28,7 +28,7 @@ export default function CTA() {
         </p>
 
         <Link
-          href="/"
+          href="/shop"
           className="mt-10 inline-flex items-center gap-2 rounded-2xl bg-white px-7 py-4 text-lg font-semibold text-sky-600 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
         >
           Explore Collection

@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { products } from "@/lib/products";
+import { useRouter } from "next/navigation";
 
 export default function HomeSidebar() {
+    const router = useRouter();
     const todaysPick = products.find(
         (product) =>
             product.name.toLowerCase().includes("blueberry musk")
@@ -52,6 +54,7 @@ export default function HomeSidebar() {
                                 </p>
 
                                 <button
+                                    onClick={() => router.push("/shop")}
                                     type="button"
                                     className="bg-slate-200 rounded-md border border-slate-200 px-3 py-1.5 text-[11px] font-semibold text-slate-900 transition hover:bg-sky-200"
                                 >
@@ -149,6 +152,7 @@ export default function HomeSidebar() {
                 </p>
 
                 <button
+                    onClick = {() => router.push('/shop')}
                     type="button"
                     className="mt-5 bg-white border border-slate-200 px-4 py-2 text-[11px] font-semibold text-slate-900 transition hover:bg-sky-300"
                 >

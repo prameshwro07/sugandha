@@ -1,17 +1,13 @@
 "use client";
 
 import { products, Product } from "@/lib/products";
-import { ProductCard } from "./ProductCard";
 import SuggestionProductCard from "./SuggestionProductCard";
 
 type Props = {
   product: Product;
 };
 
-export default function ProductSuggestions({
-  product,
-}: Props) {
-
+export default function ProductSuggestions({ product }: Props) {
   const suggestions = products
     .filter((p) => p.id !== product.id)
     .map((p) => ({
@@ -22,29 +18,52 @@ export default function ProductSuggestions({
     }))
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, 10)
+    .slice(0, 20)
     .map((item) => item.product);
+
   if (suggestions.length === 0) return null;
 
   return (
-    <section className="mx-auto mt-20 max-w-6xl px-8 py-8 lg:px-8">
+    <section className="mx-auto mt-10 max-w-[1800px] px-4 py-4 sm:px-6 lg:px-12">
 
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-slate-900">
+      {/* Heading */}
+      <div className="mb-4">
+        <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
           You May Also Like
         </h2>
 
-        <p className="mt-2 text-slate-500">
+        <p className="mt-1 text-sm text-slate-500">
           Similar fragrances you might enjoy.
         </p>
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-4">
-        {suggestions.map((product) => (
-          <SuggestionProductCard
+      {/* Suggestions */}
+      <div
+        className="
+          grid
+          grid-cols-2
+          gap-3
+          sm:grid-cols-3
+          md:grid-cols-4
+          lg:grid-cols-6
+          xl:grid-cols-7
+          2xl:grid-cols-10
+        "
+      >
+        {suggestions.map((product, index) => (
+          <div
             key={product.id}
-            product={product}
-          />
+            className={`
+              ${index >= 4 ? "hidden" : ""}
+              sm:${index >= 6 ? "hidden" : ""}
+              md:${index >= 8 ? "hidden" : ""}
+              lg:${index >= 12 ? "hidden" : ""}
+              xl:${index >= 14 ? "hidden" : ""}
+              2xl:${index >= 20 ? "hidden" : ""}
+            `}
+          >
+            <SuggestionProductCard product={product} />
+          </div>
         ))}
       </div>
 

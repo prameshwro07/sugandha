@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { formatPrice } from "@/lib/products";
 import type { OrderDto } from "@/lib/orders";
+import Link from "next/link";
 
 type Stats = {
   totalOrders: number;
@@ -306,10 +307,21 @@ export function DashboardClient() {
             <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
             <p className="mt-1 text-sm text-slate-500">Realtime status: {liveState}</p>
           </div>
-          <button className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-sky-200 bg-white px-4 font-semibold" onClick={logout} type="button">
-            <LogOut size={18} aria-hidden="true" />
-            Logout
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/owner/contactmessage"
+              className="border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-700 hover:border-sky-500 hover:text-sky-600"
+            >
+              Contact Messages
+            </Link>
+
+            {/* Your existing button */}
+            <button className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-sky-200 bg-white px-4 font-semibold" onClick={logout} type="button">
+              <LogOut size={18} aria-hidden="true" />
+              Logout
+            </button>
+          </div>
+
         </header>
 
         <section className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -330,12 +342,12 @@ export function DashboardClient() {
             <option value="month">Monthly Orders</option>
           </select>
           <select className="field lg:w-44" value={status} onChange={(event) => setStatus(event.target.value as StatusFilter)}>
-<option value="Pending">Pending</option>
-<option value="Confirmed">Confirmed</option>
-<option value="Packed">Packed</option>
-<option value="Out for Delivery">Out for Delivery</option>
-<option value="Delivered">Delivered</option>
-<option value="Cancelled">Cancelled</option>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Packed">Packed</option>
+            <option value="Out for Delivery">Out for Delivery</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
           </select>
         </section>
 

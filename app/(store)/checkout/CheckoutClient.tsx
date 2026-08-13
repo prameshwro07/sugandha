@@ -375,7 +375,7 @@ export function CheckoutClient() {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <img
-                      src="/esewa-v2.png"
+                      src="/icons/esewa-v2.png"
                       alt="eSewa"
                       className="h-10 w-10 object-contain"
                     />

@@ -1,13 +1,20 @@
 import type { MetadataRoute } from "next";
-import { brand } from "@/lib/products";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://shopsugandha.com";
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/owner/", "/api/"],
+      disallow: [
+        "/api/",
+        "/owner/",
+        "/checkout",
+        "/cart",
+      ],
     },
-    sitemap: `${brand.siteUrl}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

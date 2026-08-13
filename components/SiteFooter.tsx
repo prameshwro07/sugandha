@@ -26,7 +26,7 @@ export function SiteFooter() {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg text-white">
             Quick Links
           </h3>
 
@@ -73,7 +73,7 @@ export function SiteFooter() {
 
         {/* Customer Care */}
         <div>
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg text-white">
             Customer Care
           </h3>
 
@@ -129,7 +129,7 @@ export function SiteFooter() {
 
         {/* Social Links */}
         <div>
-          <h3 className="text-lg font-semibold text-white">
+          <h3 className="text-lg text-white">
             Connect With Us
           </h3>
 
@@ -150,7 +150,7 @@ export function SiteFooter() {
               href="https://www.facebook.com/profile.php?id=61592136763590"
             >
               <Image
-                src="/facebook.png"
+                src="/icons/facebook.png"
                 alt="Facebook"
                 width={22}
                 height={22}
@@ -161,7 +161,7 @@ export function SiteFooter() {
               href="https://www.instagram.com/shopsugandha/"
             >
               <Image
-                src="/instagram.png"
+                src="/icons/instagram.png"
                 alt="Instagram"
                 width={22}
                 height={22}
@@ -172,7 +172,7 @@ export function SiteFooter() {
               href="https://www.tiktok.com/@shopsugandha"
             >
               <Image
-                src="/tiktok.png"
+                src="/icons/tiktok.png"
                 alt="TikTok"
                 width={22}
                 height={22}
@@ -183,7 +183,7 @@ export function SiteFooter() {
               href="https://wa.me/9779818849093"
             >
               <Image
-                src="/whatsAppv2.0.png"
+                src="/icons/whatsAppv2.0.png"
                 alt="WhatsApp"
                 width={22}
                 height={22}

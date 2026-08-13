@@ -1,6 +1,7 @@
 export default function AnnouncementBar() {
   const message =
-    "⏳ Free Delivery on Orders Above Rs. 999 — Don't Miss Out!";
+    "🚚 Free Delivery Inside Kathmandu Valley — Don't Miss Out!"
+    // "🚚 Free Delivery on Orders Above Rs. 999 — Don't Miss Out!";
   // "🚚 Free Delivery on Orders above Rs. 999 | 🌿 Alcohol-Free Premium Attars | ⭐ Trusted by Customers"
 
   return (
