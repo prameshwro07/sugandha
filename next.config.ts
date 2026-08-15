@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
   },
 
-  // Fix Turbopack workspace root inference issues in some environments
   turbopack: {
     root: __dirname,
   },

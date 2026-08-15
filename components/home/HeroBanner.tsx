@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 const banners = [
   {
-    src: "/posh2.png",
+    src: "/banner_.png",
     alt: "Sugandha premium perfume collection in Nepal",
   },
   {
-    src: "/hero3.png",
+    src: "/summerBanner-version-3.png",
     alt: "Sugandha attar and fragrance collection in Nepal",
   },
 ];

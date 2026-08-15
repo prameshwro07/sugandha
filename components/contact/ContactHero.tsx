@@ -33,7 +33,7 @@ export default function ContactHero() {
             href="https://wa.me/9779818849093?text=Hi%20Sugandha!%20I'm%20looking%20for%20a%20fragrance%20recommendation."
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 px-7 py-3 font-semibold text-white transition hover:bg-green-600"
           >
-            <img src="/whatsapp.png" alt="" className="h-5 w-5"/>
+            <img src="/icons/whatsapp.png" alt="" className="h-5 w-5" />
             Chat on WhatsApp
           </Link>
 

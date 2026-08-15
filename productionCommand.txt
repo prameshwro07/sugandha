@@ -1,0 +1,11 @@
+zip command 
+
+zip -r sugandha-production.zip . \
+  -x "node_modules/*" \
+     ".git/*" \
+     ".env" \
+     "sugandha-production.zip"
+
+     unzip command
+     unzip directly in folder
+     unzip ~/public_html/sugandha-production.zip -d ~/sugandha
