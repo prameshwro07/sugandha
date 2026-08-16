@@ -77,7 +77,7 @@ SUGANDHA
 </h1>
 
 <p style="margin-top:8px;color:white;">
-Let's Smell Good
+Smell Good, Feel Confident!
 </p>
 
 </td>
@@ -241,7 +241,7 @@ SUGANDHA
 </h1>
 
 <p style="margin-top:8px;color:white;">
-Let's Smell Good
+Smell Good, Feel Confident!
 </p>
 
 </td>
@@ -446,7 +446,7 @@ SUGANDHA
 </h1>
 
 <p style="margin-top:8px;color:white;">
-Let's Smell Good
+Smell Good, Feel Confident!
 </p>
 
 </td>

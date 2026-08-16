@@ -1,7 +1,7 @@
 export default function AnnouncementBar() {
 const messages = [
   "🚚 Free Delivery on Orders above Rs. 999 — Shop Now!",
-  "🌿 Premium Alcohol-Free Attars — Long-Lasting & Elegant.",
+  "🌿 Premium Alcohol-Free Perfume Oils — Long-Lasting & Elegant.",
   "⭐ Trusted by Customers — Quality You Can Count On!",
 ];
 
