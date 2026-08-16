@@ -24,16 +24,24 @@ export async function POST(request: Request) {
     const { products, paymentMethod, customerName, phone, email, address } =
       payload.data;
 
-    // totals
-    const totalPrice = products.reduce(
+    // Totals
+    const subtotal = products.reduce(
       (sum, p) => sum + p.price * p.quantity,
       0,
     );
 
+    const FREE_DELIVERY_THRESHOLD = 999;
+    const DELIVERY_FEE = 79;
+
+    const deliveryFee =
+      subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+
+    const totalPrice = subtotal + deliveryFee;
+
     await connectToDatabase();
+
     const dateParts = orderDateParts();
 
-    // Compatibility (first item)
     const order = await OrderModel.create({
       customerName,
       phone,
@@ -53,7 +61,7 @@ export async function POST(request: Request) {
       status: "Pending",
       ...dateParts,
     });
-    
+
     await sendOrderConfirmationEmail({
       customerName: order.customerName,
       email: order.email,
@@ -64,6 +72,7 @@ export async function POST(request: Request) {
     });
 
     const serialized = serializeOrder(order);
+
     emitOrderEvent("order:created", serialized).catch((eventError) => {
       console.error("Could not emit order creation event.", eventError);
     });
@@ -74,6 +83,7 @@ export async function POST(request: Request) {
       error instanceof Error && error.message.includes("MONGODB_URI")
         ? "Order storage is not configured yet."
         : "We could not save your order. Please try again.";
+
     return NextResponse.json({ message }, { status: 500 });
   }
 }

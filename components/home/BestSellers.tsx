@@ -9,11 +9,12 @@ export default function BestSellers() {
   // Select your featured products
   const bestSellers = products.filter((product) =>
     [
-      "cr7-attar",
+
       "blueberry-musk",
-      "chocolate-musk",
-      "french-tobacco",
-      "red-vanilla",
+      "hawas",
+      "cr7-attar",
+      "amaze4-gift-set",
+      "eclaire"
     ].includes(product.slug)
   );
 

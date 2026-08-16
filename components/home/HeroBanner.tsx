@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 const banners = [
-  {
-    src: "/banner_.png",
-    alt: "Sugandha premium perfume collection in Nepal",
-  },
+  // {
+  //   src: "/banner_.png",
+  //   alt: "Sugandha premium perfume collection in Nepal",
+  // },
   {
     src: "/summerBanner-version-3.png",
     alt: "Sugandha attar and fragrance collection in Nepal",

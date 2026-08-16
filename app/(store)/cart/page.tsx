@@ -7,18 +7,33 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function CartPage() {
-  const { items, increaseQuantity, decreaseQuantity, removeFromCart } =
-    useCart();
+const { items, increaseQuantity, decreaseQuantity, removeFromCart } =
+  useCart();
 
-  const [quantity, setQuantity] = useState(1);
+const [quantity, setQuantity] = useState(1);
 
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const router = useRouter()
+const totalPrice = items.reduce(
+  (sum, item) => sum + item.price * item.quantity,
+  0,
+);
+
+// Delivery
+const FREE_DELIVERY_THRESHOLD = 999;
+const DELIVERY_FEE = 79;
+
+const deliveryFee =
+  totalPrice >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+
+const finalTotal = totalPrice + deliveryFee;
+
+const amountToFreeDelivery = Math.max(
+  0,
+  FREE_DELIVERY_THRESHOLD - totalPrice,
+);
+
+const router = useRouter();
 
   return (
     <main className="mx-auto flex min-h-[calc(100vh-100px)] max-w-7xl flex-col px-4 py-10">
@@ -47,31 +62,12 @@ export default function CartPage() {
             {items.map((item) => (
               <div
                 key={item.id}
-                 className="
-    flex
-    items-center
-    gap-3
-    overflow-hidden
-    rounded-xl
-    border
-    border-slate-200
-    bg-white
-    p-4
-    shadow-sm
-    sm:gap-5
-    sm:p-5
-  "
+                 className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:gap-5 sm:p-5"
               >
                 <img
                   src={item.images[0]}
                   alt={item.name}
-                  className="    h-20
-    w-20
-    shrink-0
-    rounded-xl
-    object-cover
-    sm:h-28
-    sm:w-28"
+                  className="h-20 w-20 shrink-0 rounded-xl object-cover sm:h-28 sm:w-28"
                 />
 
                 <div className="min-w-0 flex-1">
@@ -143,7 +139,15 @@ export default function CartPage() {
               <div className="flex justify-between">
                 <span className="text-slate-600">Delivery</span>
 
-                <span className="font-semibold text-green-600">Free</span>
+                {deliveryFee === 0 ? (
+  <span className="font-semibold text-green-600">
+    Free
+  </span>
+) : (
+  <span className="font-semibold">
+    Rs. {deliveryFee.toLocaleString()}
+  </span>
+)}
               </div>
 
               <hr className="text-slate-200" />
@@ -152,10 +156,28 @@ export default function CartPage() {
                 <span>Total</span>
 
                 <span className="text-sky-600">
-                  Rs. {totalPrice.toLocaleString()}
+                  Rs. Rs. {finalTotal.toLocaleString()}
                 </span>
               </div>
             </div>
+<div
+  className={`mt-6 rounded-xl p-4 text-center text-sm font-medium ${
+    totalPrice < FREE_DELIVERY_THRESHOLD
+      ? "bg-amber-50 text-amber-700"
+      : "bg-green-50 text-green-700"
+  }`}
+>
+  {totalPrice < FREE_DELIVERY_THRESHOLD ? (
+    <>
+      {/* Add Rs. {amountToFreeDelivery.toLocaleString()} more to get{" "} */}
+      Add more pruducts to get{" "}
+      <strong>FREE delivery</strong> 🎉
+    </>
+  ) : (
+    <>You unlocked <strong>FREE delivery!</strong></>
+  )}
+</div>
+            
 
             <Link
               href="/checkout"
@@ -171,9 +193,7 @@ export default function CartPage() {
               Continue Shopping
             </Link>
 
-            <div className="mt-6 rounded-xl bg-green-50 p-4 text-center text-sm font-medium text-green-700">
-              🚚 Free Delivery Inside Kathmandu Valley.
-            </div>
+
           </aside>
         </div>
       )}

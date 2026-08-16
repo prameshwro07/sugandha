@@ -54,14 +54,29 @@ export function CheckoutClient() {
     return items;
   }, [buyNowId, buyNowQuantity, items]);
 
-  const totalPrice = checkoutItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const totalItems = checkoutItems.reduce(
-    (sum, item) => sum + item.quantity,
-    0,
-  );
+const totalPrice = checkoutItems.reduce(
+  (sum, item) => sum + item.price * item.quantity,
+  0,
+);
+
+const totalItems = checkoutItems.reduce(
+  (sum, item) => sum + item.quantity,
+  0,
+);
+
+// Delivery settings
+const FREE_DELIVERY_THRESHOLD = 999;
+const DELIVERY_FEE = 79;
+
+const deliveryFee =
+  totalPrice >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+
+const finalTotal = totalPrice + deliveryFee;
+
+const amountToFreeDelivery = Math.max(
+  0,
+  FREE_DELIVERY_THRESHOLD - totalPrice,
+);
 
 
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -133,33 +148,33 @@ export function CheckoutClient() {
   });
 
   useEffect(() => {
-  async function loadProfile() {
-    try {
-      const response = await fetch("/api/profile/details");
+    async function loadProfile() {
+      try {
+        const response = await fetch("/api/profile/details");
 
-      if (!response.ok) {
-        return;
+        if (!response.ok) {
+          return;
+        }
+
+        const data = await response.json();
+
+        if (!data.user) {
+          return;
+        }
+
+        reset({
+          customerName: data.user.name ?? "",
+          email: data.user.email ?? "",
+          phone: data.user.phone ?? "",
+          address: data.user.address ?? "",
+        });
+      } catch (error) {
+        console.error("Failed to load profile details:", error);
       }
-
-      const data = await response.json();
-
-      if (!data.user) {
-        return;
-      }
-
-      reset({
-        customerName: data.user.name ?? "",
-        email: data.user.email ?? "",
-        phone: data.user.phone ?? "",
-        address: data.user.address ?? "",
-      });
-    } catch (error) {
-      console.error("Failed to load profile details:", error);
     }
-  }
 
-  loadProfile();
-}, [reset]);
+    loadProfile();
+  }, [reset]);
 
   // keep products in sync with cart
   useEffect(() => {
@@ -337,18 +352,23 @@ export function CheckoutClient() {
                 <span>{formatPrice(totalPrice)}</span>
               </div>
 
-              <div className="flex justify-between">
-                <span>Shipping</span>
+<div className="flex justify-between">
+  <span>Delivery Charge</span>
 
-                <span className="text-green-600">Free</span>
-              </div>
+  {deliveryFee === 0 ? (
+    <span className="font-medium text-green-600">Free</span>
+  ) : (
+    <span className="font-medium">
+      {formatPrice(deliveryFee)}
+    </span>
+  )}
+</div>
 
               <hr className="text-slate-200" />
-
               <div className="flex justify-between text-lg font-bold">
                 <span>Total</span>
 
-                <span className="text-sky-600">{formatPrice(totalPrice)}</span>
+                <span className="text-sky-600">{formatPrice(finalTotal)}</span>
               </div>
             </div>
           </div>
@@ -368,8 +388,8 @@ export function CheckoutClient() {
                 type="button"
                 onClick={() => choosePayment("esewa")}
                 className={`rounded-xl border-2 p-4 text-left transition-all duration-300 hover:shadow-lg ${paymentMethod === "esewa"
-                    ? "border-sky-400 bg-sky-50"
-                    : "border-slate-200 bg-white hover:border-sky-300"
+                  ? "border-sky-400 bg-sky-50"
+                  : "border-slate-200 bg-white hover:border-sky-300"
                   }`}
               >
                 <div className="flex items-start justify-between">
@@ -400,8 +420,8 @@ export function CheckoutClient() {
                 type="button"
                 onClick={() => choosePayment("cod")}
                 className={`rounded-xl border-2 p-4 text-left transition-all duration-300 hover:shadow-lg ${paymentMethod === "cod"
-                    ? "border-sky-400 bg-sky-50"
-                    : "border-slate-200 bg-whit hover:border-sky-300"
+                  ? "border-sky-400 bg-sky-50"
+                  : "border-slate-200 bg-whit hover:border-sky-300"
                   }`}
               >
                 <div className="flex items-center gap-3">
