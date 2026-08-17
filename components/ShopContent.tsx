@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { products } from "@/lib/products";
 import { ProductCard } from "./ProductCard";
+import { useRouter } from "next/navigation";
 import HomeProductCard from "./HomeProductCard"
 import Link from "next/link";
 
@@ -29,8 +30,10 @@ const seoCategories = new Set([
     "unisex",
     "attar",
     "perfume",
+    "new",
+    "best-seller",
+    "combo",
 ]);
-
 
 export default function ShopContent({
     initialCategory = "all",
@@ -39,9 +42,12 @@ export default function ShopContent({
     "Discover premium alcohol-free attars crafted for every personality and every occasion.",
     breadcrumb = "Home / Shop",
 }: ShopContentProps) {
+    const router = useRouter();
     const [search, setSearch] = useState("");
-    const [selectedCategory, setSelectedCategory] =
-        useState(initialCategory);
+    const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+    useEffect(() => {
+        setSelectedCategory(initialCategory);
+    }, [initialCategory]);
 
     const categories = useMemo(
         () => [
@@ -124,19 +130,21 @@ export default function ShopContent({
                                     selectedCategory === category;
 
                                 const className = `whitespace-nowrap rounded-full px-6 py-1.5 text-sm font-medium transition ${isSelected
-                                        ? "bg-sky-400 text-slate-900 shadow-sm"
-                                        : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50"
+                                    ? "bg-sky-400 text-slate-900 shadow-sm"
+                                    : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50"
                                     }`;
 
                                 if (seoCategories.has(category)) {
                                     return (
-                                        <Link
+                                        <button
                                             key={category}
-                                            href={`/shop/${category}`}
+                                            onClick={() => {
+                                                router.push(`/shop/${category}`, { scroll: false });
+                                            }}
                                             className={className}
                                         >
                                             {formatCategory(category)}
-                                        </Link>
+                                        </button>
                                     );
                                 }
 
@@ -158,18 +166,14 @@ export default function ShopContent({
 
                     {/* Bottom Divider */}
                     <div className="mx-6 border-t border-slate-200" />
-
                 </div>
-
             </div>
-
 
             <div className="mb-6 px-6 md:hidden">
                 <p className="text-slate-500">
                     Showing {filteredProducts.length} Products
                 </p>
             </div>
-
 
             <div className="grid grid-cols-2 gap-3 md:hidden px-6">
                 {filteredProducts.map((product) => (
@@ -181,49 +185,48 @@ export default function ShopContent({
             </div>
 
             <div className="hidden w-full md:block">
-
                 <div className="w-full border-y border-slate-200">
                     <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex w-full items-stretch">
                             <aside className="w-[180px] shrink-0 border-r border-slate-200 py-6 pr-4 lg:w-[210px] lg:pr-5 xl:w-[220px]">
-
                                 <h2 className="text-sm font-bold uppercase tracking-wide text-slate-900">
                                     Shop By Category
                                 </h2>
-
                                 <div className="mt-5 space-y-1">
-
                                     {categories.map((category) => {
                                         const isSelected =
                                             selectedCategory === category;
 
                                         const className = `flex w-full items-center px-3 py-2.5 text-left text-sm font-medium transition ${isSelected
-                                                ? "bg-sky-100 text-sky-700"
-                                                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                            ? "bg-sky-100 text-sky-700"
+                                            : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                                             }`;
 
                                         const content = (
                                             <>
                                                 <span
-                                                    className={`mr-3 h-1.5 w-1.5 shrink-0 rounded-full ${isSelected
-                                                            ? "bg-sky-500"
-                                                            : "bg-transparent"
+                                                    className={`mr-3 inline-block h-1.5 w-1.5 shrink-0 rounded-full ${isSelected
+                                                        ? "bg-sky-500"
+                                                        : "bg-transparent"
                                                         }`}
                                                 />
 
-                                                {formatCategory(category)}
+                                                <span>
+                                                    {formatCategory(category)}
+                                                </span>
                                             </>
                                         );
-
                                         if (seoCategories.has(category)) {
                                             return (
-                                                <Link
+                                                <button
                                                     key={category}
-                                                    href={`/shop/${category}`}
+                                                    onClick={() => {
+                                                        router.push(`/shop/${category}`, { scroll: false });
+                                                    }}
                                                     className={className}
                                                 >
                                                     {content}
-                                                </Link>
+                                                </button>
                                             );
                                         }
 
@@ -239,15 +242,12 @@ export default function ShopContent({
                                             </button>
                                         );
                                     })}
-
                                 </div>
-
                             </aside>
+
                             <section className="min-w-0 flex-1 py-6 pl-5 lg:pl-6 xl:pl-7">
                                 <div className="mb-5 flex items-end justify-between border-b border-slate-200 pb-4">
-
                                     <div>
-
                                         <h2 className="text-lg font-bold text-slate-900 lg:text-xl">
                                             {formatCategory(selectedCategory)}
                                         </h2>
@@ -258,9 +258,7 @@ export default function ShopContent({
                                                 ? "product"
                                                 : "products"}
                                         </p>
-
                                     </div>
-
                                 </div>
 
                                 <div className="grid grid-cols-3 gap-4 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5">
@@ -271,17 +269,11 @@ export default function ShopContent({
                                             product={product}
                                         />
                                     ))}
-
                                 </div>
-
                             </section>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </>
     );

@@ -65,6 +65,13 @@ const categoryData: Record<
         description:
             "Explore the latest perfume and attar arrivals from Sugandha. Discover new fragrances available online in Nepal.",
     },
+
+    combo: {
+        name: "Combo Offers",
+        title: "Perfume & Attar Combo Offers in Nepal | Sugandha",
+        description:
+            "Shop premium perfume and attar combo offers from Sugandha. Discover special fragrance combinations at exclusive prices.",
+    },
 };
 
 export async function generateStaticParams() {
@@ -131,6 +138,9 @@ export default async function CategoryPage({
         "unisex",
         "attar",
         "perfume",
+        "new",
+        "best-seller",
+        "combo",
     ]);
 
     const data = categoryData[category];

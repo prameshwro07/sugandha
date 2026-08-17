@@ -54,29 +54,29 @@ export function CheckoutClient() {
     return items;
   }, [buyNowId, buyNowQuantity, items]);
 
-const totalPrice = checkoutItems.reduce(
-  (sum, item) => sum + item.price * item.quantity,
-  0,
-);
+  const totalPrice = checkoutItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
-const totalItems = checkoutItems.reduce(
-  (sum, item) => sum + item.quantity,
-  0,
-);
+  const totalItems = checkoutItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0,
+  );
 
-// Delivery settings
-const FREE_DELIVERY_THRESHOLD = 999;
-const DELIVERY_FEE = 79;
+  // Delivery settings
+  const FREE_DELIVERY_THRESHOLD = 999;
+  const DELIVERY_FEE = 79;
 
-const deliveryFee =
-  totalPrice >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+  const deliveryFee =
+    totalPrice >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
 
-const finalTotal = totalPrice + deliveryFee;
+  const finalTotal = totalPrice + deliveryFee;
 
-const amountToFreeDelivery = Math.max(
-  0,
-  FREE_DELIVERY_THRESHOLD - totalPrice,
-);
+  const amountToFreeDelivery = Math.max(
+    0,
+    FREE_DELIVERY_THRESHOLD - totalPrice,
+  );
 
 
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -352,17 +352,17 @@ const amountToFreeDelivery = Math.max(
                 <span>{formatPrice(totalPrice)}</span>
               </div>
 
-<div className="flex justify-between">
-  <span>Delivery Charge</span>
+              <div className="flex justify-between">
+                <span>Delivery Charge</span>
 
-  {deliveryFee === 0 ? (
-    <span className="font-medium text-green-600">Free</span>
-  ) : (
-    <span className="font-medium">
-      {formatPrice(deliveryFee)}
-    </span>
-  )}
-</div>
+                {deliveryFee === 0 ? (
+                  <span className="font-medium text-green-600">Free</span>
+                ) : (
+                  <span className="font-medium">
+                    {formatPrice(deliveryFee)}
+                  </span>
+                )}
+              </div>
 
               <hr className="text-slate-200" />
               <div className="flex justify-between text-lg font-bold">
@@ -466,7 +466,7 @@ const amountToFreeDelivery = Math.max(
                     rel="noreferrer"
                   >
                     <Image
-                      src="/whatsapp.png"
+                      src="/icons/whatsapp.png"
                       alt="WhatsApp"
                       width={22}
                       height={22}

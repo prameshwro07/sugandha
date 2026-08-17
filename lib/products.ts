@@ -178,6 +178,7 @@ export const products: Product[] = [
 
     notes: "Fresh citrus, woods, amber",
   },
+
   {
     id: "hawas",
     slug: "hawas",
@@ -441,6 +442,43 @@ export const products: Product[] = [
     ],
 
     stockStatus: "in-stock",
+
+    featured: true,
+
+    volume: "100ml",
+
+    rating: 4.8,
+    reviews: 32,
+
+    notes: "Oud, blue citrus, dry amber",
+  },
+
+  {
+    id: "afnan-9pm",
+    slug: "afnan-9pm",
+
+    name: "Afnan 9PM 100ml Perfume | Men ",
+
+    price: 4999,
+    originalPrice: 6999,
+
+    images: [
+      "/productImages/9pm.jpg",
+      "/productImages/9pm1.webp",
+    ],
+
+    shortDescription: "Fresh fruity premium perfume.",
+
+    description:
+      "A sweet fruity fragrance with long-lasting performance.",
+
+    categories: [
+      "men",
+      "new",
+      "perfume"
+    ],
+
+    stockStatus: "out-of-stock",
 
     featured: true,
 
