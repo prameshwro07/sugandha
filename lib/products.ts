@@ -114,10 +114,12 @@ export const products: Product[] = [
       "/productImages/blueberry2.png",
     ],
 
-    shortDescription: "Fresh fruity premium attar.",
+    shortDescription: "A sweet and refreshing blueberry fragrance blended with soft musk for a smooth, fruity, and long-lasting scent.",
 
     description:
-      "A sweet fruity fragrance with long-lasting performance.",
+      `Blueberry Musk is a delightful blend of juicy blueberry sweetness and warm, elegant musk. Its fresh fruity opening develops into a smooth and comforting aroma, creating a fragrance that feels modern, luxurious, and easy to wear. Perfect for everyday use, special occasions, or whenever you want to leave a memorable impression.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free perfect for carrying your signature scent wherever you go.`,
 
     categories: [
       "men",
@@ -155,10 +157,12 @@ export const products: Product[] = [
       "/productImages/cr75.png",
     ],
 
-    shortDescription: "Fresh fruity premium attar.",
+    shortDescription: "A bold and energetic fragrance with fresh citrus, aromatic notes, and a warm woody finish—perfect for a confident, modern style.",
 
     description:
-      "A sweet fruity fragrance with long-lasting performance.",
+      `CR7 Attar is a fresh, masculine fragrance designed for those who like to stand out. It opens with vibrant and refreshing notes, followed by an aromatic heart and a smooth woody base. The result is a clean, confident, and long-lasting scent that works perfectly for everyday wear, outings, and special occasions.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free, making it easy to carry and apply anytime.`,
 
     categories: [
       "men",
@@ -193,15 +197,18 @@ export const products: Product[] = [
       "/productImages/hawas2.jpeg",
     ],
 
-    shortDescription: "Fresh fruity premium attar.",
+    shortDescription: "A fresh, aquatic, and energetic fragrance with fruity notes and a smooth woody-musky finish.",
 
     description:
-      "A sweet fruity fragrance with long-lasting performance.",
+      `Hawas Attar delivers a refreshing and modern fragrance with a vibrant aquatic character. Its fruity freshness blends beautifully with aromatic and subtly sweet notes, settling into a smooth, warm musky-woody base. Perfect for everyday wear, casual outings, and special occasions when you want a fresh and confident presence.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your favorite fragrance wherever you go.`,
 
     categories: [
       "men",
       "best-seller",
-      "attar"
+      "attar",
+      "new"
     ],
 
     stockStatus: "in-stock",
@@ -272,15 +279,15 @@ export const products: Product[] = [
       "/productImages/redVanilla3.jpg",
     ],
 
-    shortDescription: "Warm vanilla premium attar.",
+    shortDescription: "A sweet, elegant, and captivating fragrance with rich vanilla, fruity sweetness, and a warm, sensual finish.",
 
     description:
-      "Rich vanilla blended with soft woody notes.",
+      `Red Vanilla Attar is a beautifully sweet and feminine fragrance that blends luscious fruity notes with creamy vanilla and a soft, warm base. Its smooth and captivating aroma creates an elegant presence that is perfect for everyday wear, romantic evenings, and special occasions.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your signature scent wherever you go.`,
 
     categories: [
       "women",
-      "unisex",
-      "new",
       "best-seller",
       "attar"
     ],
@@ -312,14 +319,15 @@ export const products: Product[] = [
       "/productImages/chocolateMusk3.jpg",
     ],
 
-    shortDescription: "Sweet chocolate musk attar.",
+    shortDescription: "A rich and irresistible blend of creamy chocolate and soft musk, creating a warm, sweet, and comforting aroma.",
 
     description:
-      "Creamy chocolate fragrance with smooth musk.",
+      `Chocolate Musk Attar combines the delicious sweetness of creamy chocolate with the smooth warmth of musk. Its rich and cozy aroma creates a luxurious, indulgent fragrance that feels both comforting and captivating. Perfect for evening wear, special occasions, or whenever you want a sweet and memorable scent.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your favorite fragrance wherever you go.`,
 
     categories: [
       "unisex",
-      "new",
       "best-seller",
       "attar"
     ],
@@ -351,10 +359,12 @@ export const products: Product[] = [
       "/productImages/Eclaire2.jpeg",
     ],
 
-    shortDescription: "Fresh fruity premium attar.",
+    shortDescription: "A creamy, sweet, and luxurious fragrance with delicious caramel, vanilla, and soft gourmand notes.",
 
     description:
-      "A sweet fruity fragrance with long-lasting performance.",
+      `Eclaire Attar is a rich gourmand fragrance that wraps you in the irresistible sweetness of creamy caramel, smooth vanilla, and delicate milky notes. Its warm and comforting aroma feels elegant, indulgent, and incredibly inviting. Perfect for cozy evenings, special occasions, or anyone who loves sweet and luxurious fragrances.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your favorite sweet scent wherever you go.`,
 
     categories: [
       "women",
@@ -390,10 +400,12 @@ export const products: Product[] = [
       "/productImages/frenchTobacco3.webp",
     ],
 
-    shortDescription: "Luxury tobacco fragrance.",
+    shortDescription: "A rich and sophisticated fragrance blending warm tobacco, sweet spices, and smooth woody notes for a bold, elegant aroma.",
 
     description:
-      "Elegant tobacco blended with amber and musk.",
+      `French Tobacco Attar offers a warm and refined fragrance with the deep character of tobacco balanced by sweet, spicy, and woody accords. Its smooth and luxurious aroma creates a confident, sophisticated presence, making it especially suited for evenings, formal occasions, and cooler days.
+
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your signature scent wherever you go.`,
 
     categories: [
       "men",
@@ -429,15 +441,16 @@ export const products: Product[] = [
       "/productImages/poshBlueberry2.png",
     ],
 
-    shortDescription: "Fresh fruity premium perfume.",
+    shortDescription: "A sweet and refreshing blueberry fragrance blended with soft musk for a smooth, elegant, and long-lasting scent.",
 
     description:
-      "A sweet fruity fragrance with long-lasting performance.",
+      `Blueberry Musk Perfume is a delightful fruity-musky fragrance that combines the juicy sweetness of ripe blueberries with a soft, warm musk base. Its fresh and inviting character develops into a smooth, comforting aroma that feels modern and luxurious. Perfect for everyday wear, outings, and special occasions.
+
+      100ML Perfume: A generous full-size bottle designed for regular use, allowing you to enjoy the captivating Blueberry Musk fragrance throughout the day.`,
 
     categories: [
       "men",
       "unisex",
-      "new",
       "perfume"
     ],
 
@@ -467,10 +480,12 @@ export const products: Product[] = [
       "/productImages/9pm1.webp",
     ],
 
-    shortDescription: "Fresh fruity premium perfume.",
+    shortDescription: "A warm, sweet, and seductive fragrance with fruity freshness, creamy vanilla, and rich amber notes.",
 
     description:
-      "A sweet fruity fragrance with long-lasting performance.",
+      `Afnan 9PM is a captivating evening fragrance with a sweet and sophisticated character. It opens with fresh fruity notes before developing into a warm, creamy heart and a smooth vanilla-amber base. Its rich and inviting aroma makes it an excellent choice for evenings, dates, parties, and special occasions.
+
+      100ML Perfume: A full-size fragrance designed for evening wear, offering a smooth, memorable scent that leaves a confident and lasting impression.`,
 
     categories: [
       "men",

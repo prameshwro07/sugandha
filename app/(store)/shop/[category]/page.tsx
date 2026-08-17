@@ -8,7 +8,6 @@ type Props = {
     }>;
 };
 
-
 const categoryData: Record<
     string,
     {
@@ -21,59 +20,58 @@ const categoryData: Record<
         name: "Attars",
         title: "Attars in Nepal | Shop Premium Attars Online",
         description:
-            "Shop premium alcohol-free attars online in Nepal. Discover long-lasting fragrances from Sugandha for men, women and unisex wear.",
+            "Shop premium alcohol-free attars online in Nepal. Discover long-lasting fragrances from Sugandha for men, women, and wear.",
     },
 
     perfume: {
         name: "Perfumes",
         title: "Perfumes in Nepal | Shop Fragrances Online",
         description:
-            "Explore perfumes online in Nepal from Sugandha. Discover fruity, woody, musky and premium fragrances for every occasion.",
+            "Explore perfumes online in Nepal from Sugandha. Discover fruity, woody, musky, and long-lasting fragrances for every occasion.",
     },
 
     men: {
         name: "Men's Fragrances",
         title: "Men's Perfume & Attar in Nepal | Sugandha",
         description:
-            "Explore men's perfumes and attars in Nepal. Find fresh, woody, musky and long-lasting fragrances from Sugandha.",
+            "Explore premium men's perfumes and attars in Nepal. Find fresh, woody, musky, and long-lasting fragrances from Sugandha.",
     },
 
     women: {
         name: "Women's Fragrances",
         title: "Women's Perfume & Attar in Nepal | Sugandha",
         description:
-            "Explore women's perfumes and attars in Nepal. Discover elegant, sweet, fruity and long-lasting fragrances from Sugandha.",
+            "Explore premium women's perfumes and attars in Nepal. Discover sweet, fruity, elegant, and long-lasting fragrances from Sugandha.",
     },
 
     unisex: {
         name: "Unisex Fragrances",
         title: "Unisex Perfume & Attar in Nepal | Sugandha",
         description:
-            "Shop unisex perfumes and attars online in Nepal. Discover fragrances designed to be enjoyed by anyone.",
+            "Shop premium unisex perfumes and attars online in Nepal. Discover elegant fragrances designed for everyone, every occasion.",
     },
 
     "best-seller": {
         name: "Best Sellers",
         title: "Best-Selling Perfumes & Attars in Nepal | Sugandha",
         description:
-            "Discover Sugandha's best-selling perfumes and attars in Nepal. Explore popular fragrances chosen by our customers.",
+            "Discover Sugandha's best-selling perfumes and attars in Nepal. Explore popular fragrances loved by customers for lasting everyday wear.",
     },
 
     new: {
         name: "New Arrivals",
         title: "New Perfumes & Attars in Nepal | Sugandha",
         description:
-            "Explore the latest perfume and attar arrivals from Sugandha. Discover new fragrances available online in Nepal.",
+            "Explore Sugandha's latest perfume and attar arrivals in Nepal. Discover new fragrances available online for every occasion.",
     },
 
     combo: {
         name: "Combo Offers",
         title: "Perfume & Attar Combo Offers in Nepal | Sugandha",
         description:
-            "Shop premium perfume and attar combo offers from Sugandha. Discover special fragrance combinations at exclusive prices.",
+            "Shop premium perfume and attar combo offers from Sugandha. Discover special fragrance combinations at exclusive prices for gifting.",
     },
 };
-
 export async function generateStaticParams() {
     return Object.keys(categoryData).map((category) => ({
         category,
@@ -154,6 +152,7 @@ export default async function CategoryPage({
     return (
         <main className="min-h-[calc(100vh-100px)] py-6 w-full">
             <ShopContent
+            key={category}
                 initialCategory={category}
                 pageTitle={isSeoCategory ? data.name : "Explore Our Collection"}
                 pageDescription={

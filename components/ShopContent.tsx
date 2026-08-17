@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { products } from "@/lib/products";
 import { ProductCard } from "./ProductCard";
-import { useRouter } from "next/navigation";
 import HomeProductCard from "./HomeProductCard"
 import Link from "next/link";
 
@@ -39,14 +39,79 @@ export default function ShopContent({
     initialCategory = "all",
     pageTitle = "Explore Our Collection",
     pageDescription =
-    "Discover premium alcohol-free attars crafted for every personality and every occasion.",
+    "Discover premium perfumes and roll-on-oils crafted for every personality, occasion, and unforgettable moment with lasting fragrance.",
     breadcrumb = "Home / Shop",
 }: ShopContentProps) {
     const router = useRouter();
+    const params = useParams();
+
+    const categoryScrollRef = useRef<HTMLDivElement>(null);
+
+    const urlCategory =
+        typeof params.category === "string"
+            ? params.category
+            : initialCategory;
+
     const [search, setSearch] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+    const [selectedCategory, setSelectedCategory] =
+        useState(urlCategory);
+    const handleCategoryChange = (category: string) => {
+        // Save current horizontal category scroll position
+        const scrollPosition =
+            categoryScrollRef.current?.scrollLeft ?? 0;
+
+        sessionStorage.setItem(
+            "shop-category-scroll",
+            String(scrollPosition)
+        );
+
+        // All has its own /shop route
+        const url =
+            category === "all"
+                ? "/shop"
+                : `/shop/${category}`;
+
+        router.push(url, {
+            scroll: false,
+        });
+    };
     useEffect(() => {
-        setSelectedCategory(initialCategory);
+        const savedScroll = sessionStorage.getItem(
+            "shop-category-scroll"
+        );
+
+        if (!savedScroll) return;
+
+        const restoreScroll = () => {
+            if (categoryScrollRef.current) {
+                categoryScrollRef.current.scrollLeft =
+                    Number(savedScroll);
+            }
+        };
+
+        restoreScroll();
+
+        // Fallback in case the element wasn't ready on first attempt
+        const timeout = setTimeout(restoreScroll, 0);
+
+        return () => clearTimeout(timeout);
+    }, [initialCategory]);
+
+    useEffect(() => {
+        const savedScroll = sessionStorage.getItem(
+            "shop-category-scroll"
+        );
+
+        if (!savedScroll) return;
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                if (categoryScrollRef.current) {
+                    categoryScrollRef.current.scrollLeft =
+                        Number(savedScroll);
+                }
+            });
+        });
     }, [initialCategory]);
 
     const categories = useMemo(
@@ -79,11 +144,26 @@ export default function ShopContent({
 
     const displayDescription = isSeoCategory
         ? pageDescription
-        : "Discover premium alcohol-free attars crafted for every personality and every occasion.";
+        :
+        "Shop premium perfumes and roll-on oils online in Nepal. Discover long-lasting fragrances from Sugandha for men, women, and everyone.";
 
     const displayBreadcrumb = isSeoCategory
         ? breadcrumb
         : "Home / Shop";
+
+    const navigateToCategory = (category: string) => {
+        const scrollPosition =
+            categoryScrollRef.current?.scrollLeft ?? 0;
+
+        sessionStorage.setItem(
+            "shop-category-scroll",
+            String(scrollPosition)
+        );
+
+        return category === "all"
+            ? "/shop"
+            : `/shop/${category}`;
+    };
 
     return (
         <>
@@ -122,9 +202,8 @@ export default function ShopContent({
                     <div className="mx-6 border-t border-slate-200" />
 
                     {/* Categories */}
-                    <div className="overflow-x-auto px-7 py-3 scrollbar-hide">
+                    <div ref={categoryScrollRef} style={{ scrollBehavior: "auto" }} className="overflow-x-auto px-7 py-3 scrollbar-hide">
                         <div className="flex w-max gap-2">
-
                             {categories.map((category) => {
                                 const isSelected =
                                     selectedCategory === category;
@@ -134,26 +213,10 @@ export default function ShopContent({
                                     : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50"
                                     }`;
 
-                                if (seoCategories.has(category)) {
-                                    return (
-                                        <button
-                                            key={category}
-                                            onClick={() => {
-                                                router.push(`/shop/${category}`, { scroll: false });
-                                            }}
-                                            className={className}
-                                        >
-                                            {formatCategory(category)}
-                                        </button>
-                                    );
-                                }
-
                                 return (
                                     <button
                                         key={category}
-                                        onClick={() =>
-                                            setSelectedCategory(category)
-                                        }
+                                        onClick={() => handleCategoryChange(category)}
                                         className={className}
                                     >
                                         {formatCategory(category)}
@@ -177,7 +240,7 @@ export default function ShopContent({
 
             <div className="grid grid-cols-2 gap-3 md:hidden px-6">
                 {filteredProducts.map((product) => (
-                    <ProductCard
+                    <HomeProductCard
                         key={product.id}
                         product={product}
                     />
@@ -216,26 +279,11 @@ export default function ShopContent({
                                                 </span>
                                             </>
                                         );
-                                        if (seoCategories.has(category)) {
-                                            return (
-                                                <button
-                                                    key={category}
-                                                    onClick={() => {
-                                                        router.push(`/shop/${category}`, { scroll: false });
-                                                    }}
-                                                    className={className}
-                                                >
-                                                    {content}
-                                                </button>
-                                            );
-                                        }
 
                                         return (
                                             <button
                                                 key={category}
-                                                onClick={() =>
-                                                    setSelectedCategory(category)
-                                                }
+                                                onClick={() => handleCategoryChange(category)}
                                                 className={className}
                                             >
                                                 {content}

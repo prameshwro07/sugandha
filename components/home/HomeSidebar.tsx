@@ -6,10 +6,55 @@ import { useRouter } from "next/navigation";
 
 export default function HomeSidebar() {
     const router = useRouter();
-    const todaysPick = products.find(
-        (product) =>
-            product.name.toLowerCase().includes("blueberry musk")
+    const todaysPickIds = [
+        "blueberry-musk",
+        "cr7-attar",
+        "hawas",
+        "amaze4-gift-set",
+        "red-vanilla",
+        "chocolate-musk",
+        "eclaire",
+        "french-tobacco",
+    ];
+    const now = new Date();
+
+    // Nepal time (UTC+5:45)
+    const nepalTime = new Date(
+        now.toLocaleString("en-US", {
+            timeZone: "Asia/Kathmandu",
+        })
     );
+
+    // Before 6 AM → use previous day's pick
+    if (nepalTime.getHours() < 6) {
+        nepalTime.setDate(nepalTime.getDate() - 1);
+    }
+
+    // Create a stable day number
+    const startDate = new Date("2026-01-01T06:00:00");
+    const currentDate = new Date(
+        nepalTime.getFullYear(),
+        nepalTime.getMonth(),
+        nepalTime.getDate(),
+        6
+    );
+
+    const daysPassed = Math.floor(
+        (currentDate.getTime() - startDate.getTime()) /
+        (1000 * 60 * 60 * 24)
+    );
+
+    const index =
+        ((daysPassed % todaysPickIds.length) +
+            todaysPickIds.length) %
+        todaysPickIds.length;
+
+    const productId = todaysPickIds[index];
+
+    const todaysPick = products.find(
+        (product) => product.id === productId
+    );
+
 
     return (
         <aside className="flex h-full flex-col border-r py-4 border-slate-200 pr-5">
@@ -152,7 +197,7 @@ export default function HomeSidebar() {
                 </p>
 
                 <button
-                    onClick = {() => router.push('/shop')}
+                    onClick={() => router.push('/shop')}
                     type="button"
                     className="mt-5 bg-white border border-slate-200 px-4 py-2 text-[11px] font-semibold text-slate-900 transition hover:bg-sky-300"
                 >

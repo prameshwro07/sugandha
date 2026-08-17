@@ -146,7 +146,7 @@ export function SiteFooter() {
               />
             </a> */}
 
-            <a
+            {/* <a
               href="https://www.facebook.com/profile.php?id=61592136763590"
             >
               <Image
@@ -155,7 +155,7 @@ export function SiteFooter() {
                 width={22}
                 height={22}
               />
-            </a>
+            </a> */}
 
             <a
               href="https://www.instagram.com/shopsugandha/"
@@ -204,7 +204,7 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-slate-200 md:flex-row">
 
           <p className="text-xs">
-            © Copyright by Prameshwor Malla 2026 . All rights reserved.
+            © Copyright by Sugandha 2026 . All rights reserved.
           </p>
 
         </div>
