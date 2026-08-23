@@ -58,6 +58,9 @@ const seoCategories = new Set([
   "unisex",
   "attar",
   "perfume",
+  "new",
+  "combo",
+  "best-seller"
 ]);
 
 export default function ShopByCategory() {

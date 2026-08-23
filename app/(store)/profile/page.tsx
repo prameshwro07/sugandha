@@ -20,9 +20,6 @@ export default async function ProfilePage() {
       <div className="mx-auto w-full max-w-2xl">
 
         {!user ? (
-          /* =====================================================
-             LOGGED OUT
-          ====================================================== */
           <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
 
             {/* Top decoration */}
@@ -74,9 +71,6 @@ export default async function ProfilePage() {
             </div>
           </section>
         ) : (
-          /* =====================================================
-             LOGGED IN
-          ====================================================== */
           <div className="space-y-5">
 
             {/* Profile Header */}
@@ -182,9 +176,9 @@ export default async function ProfilePage() {
 
             {/* Sign Out */}
 
-            {/* <section className="rounded-3xl border border-red-600 bg-white p-3 shadow-sm sm:p-4">
+            <section className="rounded-3xl border border-slate-200 bg-white  hover:bg-red-50 p-3 shadow-sm sm:p-4">
               <SignOutButton />
-            </section> */}
+            </section>
 
             {/* Small footer */}
             <p className="pb-5 text-center text-xs text-slate-400">

@@ -180,7 +180,7 @@ export function SiteFooter() {
             </a>
 
             <a
-              href="https://wa.me/9779818849093"
+              href="https://wa.me/9779744589112"
             >
               <Image
                 src="/icons/whatsAppv2.0.png"

@@ -117,9 +117,7 @@ export const products: Product[] = [
     shortDescription: "A sweet and refreshing blueberry fragrance blended with soft musk for a smooth, fruity, and long-lasting scent.",
 
     description:
-      `Blueberry Musk is a delightful blend of juicy blueberry sweetness and warm, elegant musk. Its fresh fruity opening develops into a smooth and comforting aroma, creating a fragrance that feels modern, luxurious, and easy to wear. Perfect for everyday use, special occasions, or whenever you want to leave a memorable impression.
-
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free perfect for carrying your signature scent wherever you go.`,
+      `Blueberry Musk is a delightful blend of juicy blueberry sweetness and warm, elegant musk. Its fresh fruity opening develops into a smooth and comforting aroma, creating a fragrance that feels modern, luxurious, and easy to wear. Perfect for everyday use, special occasions, or whenever you want to leave a memorable impression.`,
 
     categories: [
       "men",
@@ -160,9 +158,7 @@ export const products: Product[] = [
     shortDescription: "A bold and energetic fragrance with fresh citrus, aromatic notes, and a warm woody finish—perfect for a confident, modern style.",
 
     description:
-      `CR7 Attar is a fresh, masculine fragrance designed for those who like to stand out. It opens with vibrant and refreshing notes, followed by an aromatic heart and a smooth woody base. The result is a clean, confident, and long-lasting scent that works perfectly for everyday wear, outings, and special occasions.
-
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free, making it easy to carry and apply anytime.`,
+      `CR7 is a fresh, masculine fragrance designed for those who like to stand out. It opens with vibrant and refreshing notes, followed by an aromatic heart and a smooth woody base. The result is a clean, confident, and long-lasting scent that works perfectly for everyday wear, outings, and special occasions.`,
 
     categories: [
       "men",
@@ -200,9 +196,7 @@ export const products: Product[] = [
     shortDescription: "A fresh, aquatic, and energetic fragrance with fruity notes and a smooth woody-musky finish.",
 
     description:
-      `Hawas Attar delivers a refreshing and modern fragrance with a vibrant aquatic character. Its fruity freshness blends beautifully with aromatic and subtly sweet notes, settling into a smooth, warm musky-woody base. Perfect for everyday wear, casual outings, and special occasions when you want a fresh and confident presence.
-
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your favorite fragrance wherever you go.`,
+      `Hawas delivers a refreshing and modern fragrance with a vibrant aquatic character. Its fruity freshness blends beautifully with aromatic and subtly sweet notes, settling into a smooth, warm musky-woody base. Perfect for everyday wear, casual outings, and special occasions when you want a fresh and confident presence.`,
 
     categories: [
       "men",
@@ -229,8 +223,8 @@ export const products: Product[] = [
 
     name: "Amaze 4 | Gift Set",
 
-    price: 1599,
-    originalPrice: 1799,
+    price: 1999,
+    originalPrice: 2499,
 
     images: [
       "/productImages/amaze4.webp",
@@ -282,9 +276,7 @@ export const products: Product[] = [
     shortDescription: "A sweet, elegant, and captivating fragrance with rich vanilla, fruity sweetness, and a warm, sensual finish.",
 
     description:
-      `Red Vanilla Attar is a beautifully sweet and feminine fragrance that blends luscious fruity notes with creamy vanilla and a soft, warm base. Its smooth and captivating aroma creates an elegant presence that is perfect for everyday wear, romantic evenings, and special occasions.
-
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your signature scent wherever you go.`,
+      `Red Vanilla Attar is a beautifully sweet and feminine fragrance that blends luscious fruity notes with creamy vanilla and a soft, warm base. Its smooth and captivating aroma creates an elegant presence that is perfect for everyday wear, romantic evenings, and special occasions.`,
 
     categories: [
       "women",
@@ -322,9 +314,7 @@ export const products: Product[] = [
     shortDescription: "A rich and irresistible blend of creamy chocolate and soft musk, creating a warm, sweet, and comforting aroma.",
 
     description:
-      `Chocolate Musk Attar combines the delicious sweetness of creamy chocolate with the smooth warmth of musk. Its rich and cozy aroma creates a luxurious, indulgent fragrance that feels both comforting and captivating. Perfect for evening wear, special occasions, or whenever you want a sweet and memorable scent.
-
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your favorite fragrance wherever you go.`,
+      `Chocolate Musk Attar combines the delicious sweetness of creamy chocolate with the smooth warmth of musk. Its rich and cozy aroma creates a luxurious, indulgent fragrance that feels both comforting and captivating. Perfect for evening wear, special occasions, or whenever you want a sweet and memorable scent.`,
 
     categories: [
       "unisex",
@@ -362,9 +352,7 @@ export const products: Product[] = [
     shortDescription: "A creamy, sweet, and luxurious fragrance with delicious caramel, vanilla, and soft gourmand notes.",
 
     description:
-      `Eclaire Attar is a rich gourmand fragrance that wraps you in the irresistible sweetness of creamy caramel, smooth vanilla, and delicate milky notes. Its warm and comforting aroma feels elegant, indulgent, and incredibly inviting. Perfect for cozy evenings, special occasions, or anyone who loves sweet and luxurious fragrances.
-
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your favorite sweet scent wherever you go.`,
+      `Eclaire Attar is a rich gourmand fragrance that wraps you in the irresistible sweetness of creamy caramel, smooth vanilla, and delicate milky notes. Its warm and comforting aroma feels elegant, indulgent, and incredibly inviting. Perfect for cozy evenings, special occasions, or anyone who loves sweet and luxurious fragrances.`,
 
     categories: [
       "women",
@@ -405,7 +393,7 @@ export const products: Product[] = [
     description:
       `French Tobacco Attar offers a warm and refined fragrance with the deep character of tobacco balanced by sweet, spicy, and woody accords. Its smooth and luxurious aroma creates a confident, sophisticated presence, making it especially suited for evenings, formal occasions, and cooler days.
 
-      6ML Roll-On: Compact, travel-friendly, and alcohol-free—perfect for carrying your signature scent wherever you go.`,
+      6ML Roll-On: Compact, travel-friendly, and alcohol-free perfect for carrying your signature scent wherever you go.`,
 
     categories: [
       "men",
@@ -498,6 +486,43 @@ export const products: Product[] = [
     featured: true,
 
     volume: "100ml",
+
+    rating: 4.8,
+    reviews: 32,
+
+    notes: "Oud, blue citrus, dry amber",
+  },
+
+  {
+    id: "chocolate_musk-blueberry_musk",
+    slug: "chocolate_muskblueberry_musk",
+
+    name: "Chocolate Musk 20ML + Blueberry Musk 6ML Combo",
+
+    price: 1099,
+    originalPrice: 1499,
+
+    images: [
+      "/productImages/combo1.jpeg",
+      "/productImages/blueberry.png",
+    ],
+
+    shortDescription: "A perfect sweet & fresh fragrance combo — 20ML Chocolate Musk paired with 6ML Blueberry Musk, available together for just Rs. 1,099.",
+
+    description:
+      `Sweet meets fresh in this irresistible fragrance combo. This exclusive set combines the warm, creamy and addictive Chocolate Musk 20ML with the fresh, fruity and youthful Blueberry Musk 6ML.
+
+      Whether you’re heading out for the day or looking for a sweeter scent for the evening, this combo gives you two different fragrance experiences in one package.`,
+
+    categories: [
+      "combo"
+    ],
+
+    stockStatus: "in-stock",
+
+    featured: true,
+
+    volume: "20ml and 6ml",
 
     rating: 4.8,
     reviews: 32,

@@ -75,7 +75,7 @@ export default function HomeSidebar() {
                         <div className="relative aspect-[3/4] w-full">
 
                             <Image
-                                src={todaysPick.images[2]}
+                                src={todaysPick.images[1]}
                                 alt={todaysPick.name}
                                 fill
                                 className="object-cover"

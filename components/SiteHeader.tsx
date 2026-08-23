@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { products, formatPrice } from "@/lib/products";
-import { Search, House, ShoppingBag, Phone, Info, UserRound } from "lucide-react";
+import { Search, House, ShoppingBag, Phone, Info, UserRound, ShoppingCart } from "lucide-react";
 import { useCart } from "@/src/store/cart";
 import { useRouter } from "next/navigation";
 import AnnouncementBar from "./announcementBar";
@@ -66,8 +66,8 @@ export function SiteHeader() {
         {/* Mobile Drawer */}
         <div
           className={`fixed left-0 top-[68px] border-t z-40 flex h-[calc(100dvh-68px)] w-[78%] flex-col border-r border-slate-200 bg-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileMenuOpen
-              ? "translate-x-0 opacity-100"
-              : "-translate-x-full opacity-0"
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-full opacity-0"
             }`}
         >
           {/* Navigation */}
@@ -124,13 +124,13 @@ export function SiteHeader() {
           className="flex h-9 w-9 flex-col justify-center gap-[5px] transition-transform duration-150 active:scale-90 md:hidden"
           aria-label="Open menu"
         >
-          <span className="h-[2px] w-2.5 rounded-full bg-slate-700" />
-          <span className="h-[2px] w-[18px] rounded-full bg-slate-700" />
-          <span className="ml-2 h-[2px] w-2.5 rounded-full bg-slate-700" />
+          <span className="h-[2px] w-2.5 rounded-full bg-slate-900" />
+          <span className="h-[2px] w-[18px] rounded-full bg-slate-900" />
+          <span className="ml-2 h-[2px] w-2.5 rounded-full bg-slate-900" />
         </button>
         <Link href="/" className="hidden shrink-0 md:block">
           <Image
-            src="/sugandhalogo_bluev4.png"
+            src="/sugandha_logo_black.png"
             alt="Sugandha"
             width={72}
             height={26}
@@ -256,7 +256,7 @@ export function SiteHeader() {
               />
             </div>
 
-            {/* the same results dropdown here */}
+            {/* Search  results  */}
             {search.trim() !== "" && (
               <div
                 className="absolute left-0 mt-2 top-[calc(100%+8px)] z-50 w-full overflow-hidden rounded-xl border border-white/20 bg-white/80 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
@@ -309,24 +309,72 @@ export function SiteHeader() {
 
           </div>
 
-          <div className="flex items-center gap-1">
-            {/* Profile */}
+          {/* <div className="flex items-center gap-1">
             <Link
               href="/profile"
               aria-label="Profile"
-              className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+              className="relative flex h-8 w-8 shrink-0 items-center justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
             >
-              <UserRound size={18} strokeWidth={2} />
+              <Image
+                src="/icons/accountImagev1.png"
+                alt="profile icon"
+                width={18}
+                height={18}
+              />
             </Link>
 
-            {/* Cart */}
             <Link
               href="/cart"
               aria-label="Cart"
               className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
             >
               <motion.div animate={controls}>
-                <ShoppingBag size={18} strokeWidth={2} />
+                <Image
+                  src="/icons/shoppingBag.png"
+                  alt="Shopping Cart"
+                  width={18}
+                  height={18}
+                />
+              </motion.div>
+
+              {mounted && totalItems > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-400 text-[9px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          </div> */}
+
+          <div className="flex items-center gap-0">
+            {/* Profile */}
+            <Link
+              href="/profile"
+              aria-label="Profile"
+              className="relative flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+            >
+              <Image
+                src="/icons/accountImagev1.png"
+                alt="profile icon"
+                width={18}
+                height={18}
+                className="object-contain"
+              />
+            </Link>
+
+            {/* Cart */}
+            <Link
+              href="/cart"
+              aria-label="Cart"
+              className="relative flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+            >
+              <motion.div animate={controls}>
+                <Image
+                  src="/icons/shoppingBag.png"
+                  alt="Shopping Cart"
+                  width={18}
+                  height={18}
+                  className="object-contain"
+                />
               </motion.div>
 
               {mounted && totalItems > 0 && (

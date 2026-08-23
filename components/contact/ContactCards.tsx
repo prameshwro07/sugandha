@@ -19,7 +19,7 @@ const contacts = [
     title: "WhatsApp",
     value: "Chat with us",
     description: "Usually replies within 30 minutes.",
-    href: "https://wa.me/9779818849093",
+    href: "https://wa.me/9779744589112",
     icon: MessageCircle,
   },
   {
