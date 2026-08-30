@@ -103,7 +103,7 @@ export const products: Product[] = [
     id: "blueberry-musk",
     slug: "blueberry-musk",
 
-    name: "Blueberry Musk Perfume Oil 6ml | Unisex ",
+    name: "Blueberry Musk Perfume Oil 6ml",
 
     price: 449,
     originalPrice: 599,
@@ -137,14 +137,14 @@ export const products: Product[] = [
     rating: 4.82,
     reviews: 42,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "Blueberry, Raspberry, Violet, White Musk, Vanilla",
   },
 
   {
     id: "cr7-attar",
     slug: "cr7-attar",
 
-    name: "CR7 Perfume-Oil 6ml | Unisex",
+    name: "CR7 Perfume-Oil 6ml",
 
     price: 449,
     originalPrice: 599,
@@ -176,14 +176,14 @@ export const products: Product[] = [
     rating: 4.79,
     reviews: 32,
 
-    notes: "Fresh citrus, woods, amber",
+    notes: "bergamot, cardamom, lavender, cinnamon, amber, musk, sandalwood, vanilla",
   },
 
   {
     id: "hawas",
     slug: "hawas",
 
-    name: "Hawas Perfume-Oil 6ml | Men ",
+    name: "Hawas Perfume-Oil 6ml",
 
     price: 699,
     originalPrice: 799,
@@ -214,7 +214,7 @@ export const products: Product[] = [
     rating: 4.82,
     reviews: 42,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "bergamot, lemon, apple, cinnamon, lavender, marine notes, orange blossom, plum, musk, ambergris, driftwood",
   },
 
   {
@@ -255,14 +255,14 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 32,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "blueberry musk, chocolate musk, black de orchid, ameer al oudh",
   },
 
   {
     id: "red-vanilla",
     slug: "red-vanilla",
 
-    name: "Red Vanilla Perfume Oil 6ml | Ladies",
+    name: "Red Vanilla Perfume Oil 6ml",
 
     price: 449,
     originalPrice: 599,
@@ -293,14 +293,14 @@ export const products: Product[] = [
     rating: 4.73,
     reviews: 23,
 
-    notes: "Vanilla warmth, soft woods",
+    notes: "red fruits, blackcurrant, lychee, rose, jasmine, vanilla, praline, amber, musk, patchouli",
   },
 
   {
     id: "chocolate-musk",
     slug: "chocolate-musk",
 
-    name: "Chocolate Musk Perfume Oil 6ml | Unisex",
+    name: "Chocolate Musk Perfume Oil 6ml",
 
     price: 299,
     originalPrice: 499,
@@ -331,14 +331,14 @@ export const products: Product[] = [
     rating: 4.77,
     reviews: 39,
 
-    notes: "Cocoa, musk, creamy resin",
+    notes: "chocolate, cocoa, vanilla, caramel, tonka bean, white musk, amber, sandalwood",
   },
 
   {
     id: "eclaire",
     slug: "eclaire",
 
-    name: "Eclaire Perfume-Oil 6ml | Ladies ",
+    name: "Eclaire Perfume-Oil 6ml ",
 
     price: 699,
     originalPrice: 799,
@@ -370,14 +370,14 @@ export const products: Product[] = [
     rating: 4.82,
     reviews: 42,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "caramel, milk, sugar, vanilla, honey, amber, musk, tonka bean",
   },
 
   {
     id: "french-tobacco",
     slug: "french-tobacco",
 
-    name: "French Tobacco Perfume Oil | Gents",
+    name: "French Tobacco Perfume Oil",
 
     price: 499,
     originalPrice: 599,
@@ -418,7 +418,7 @@ export const products: Product[] = [
     id: "posh-blueberry-musk",
     slug: "posh-blueberry-musk",
 
-    name: "Posh Blueberry Musk 100ml Perfume | Unisex ",
+    name: "Posh Blueberry Musk 100ml Perfume",
 
     price: 1499,
     originalPrice: 1799,
@@ -451,14 +451,14 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 32,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "Blueberry, Raspberry, Violet, White Musk, Vanilla",
   },
 
   {
     id: "afnan-9pm",
     slug: "afnan-9pm",
 
-    name: "Afnan 9PM 100ml Perfume | Men ",
+    name: "Afnan 9PM 100ml Perfume",
 
     price: 4999,
     originalPrice: 6999,
@@ -490,17 +490,17 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 32,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "bergamot, apple, cinnamon, lavender, muguet, orange blossom, vanilla, tonka bean, amber, patchouli, musk",
   },
 
   {
     id: "chocolate_musk-blueberry_musk",
     slug: "chocolate_muskblueberry_musk",
 
-    name: "Chocolate Musk 20ML + Blueberry Musk 6ML Combo",
+    name: "Chocolate Musk + Blueberry Musk Combo",
 
     price: 1099,
-    originalPrice: 1499,
+    originalPrice: 1349,
 
     images: [
       "/productImages/combo1.jpeg",
@@ -527,6 +527,6 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 32,
 
-    notes: "Oud, blue citrus, dry amber",
+    notes: "chocolate, blueberry",
   },
 ];
