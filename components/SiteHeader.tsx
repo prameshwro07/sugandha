@@ -126,8 +126,8 @@ export function SiteHeader() {
           aria-label="Open menu"
         >
           <span className="h-[2px] w-2.5 rounded-full bg-slate-900" />
-          <span className="h-[2px] w-[18px] rounded-full bg-slate-900" />
-          <span className="ml-4 h-[2px] w-2.5 rounded-full bg-slate-900" />
+          <span className="h-[2px] w-[22px] rounded-full bg-slate-900" />
+          <span className="ml-3 h-[2px] w-2.5 rounded-full bg-slate-900" />
         </button>
         <Link href="/" className="hidden shrink-0 md:block">
           <Image
