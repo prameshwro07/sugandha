@@ -38,17 +38,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "men",
     "women",
     "unisex",
+    "best-seller",
+    "new",
+    "combo",
   ].map((category) => ({
     url: `${baseUrl}/shop/${category}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${baseUrl}/product/${product.slug}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 

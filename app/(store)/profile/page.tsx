@@ -16,15 +16,10 @@ export default async function ProfilePage() {
   const user = session?.user;
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10 sm:px-6 sm:py-14">
-      <div className="mx-auto w-full max-w-2xl">
+    <main className="min-h-screen bg-white px-4 py-10 sm:px-6 sm:py-14">
 
         {!user ? (
-          <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-
-            {/* Top decoration */}
-            <div className="h-2 bg-sky-400" />
-
+          <section className="overflow-hidden rounded-3xl bg-white">
             <div className="px-5 py-10 sm:px-10 sm:py-12">
 
               {/* Icon */}
@@ -42,7 +37,7 @@ export default async function ProfilePage() {
                 </p>
 
                 <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-                  Welcome to your profile
+                  Welcome to profile
                 </h1>
 
                 <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-500">
@@ -64,7 +59,7 @@ export default async function ProfilePage() {
                 />
 
                 <p className="text-left text-xs leading-5 text-slate-500">
-                  No account is required to shop. You can continue
+                  You can continue
                   browsing and checkout as a guest anytime.
                 </p>
               </div>
@@ -74,10 +69,7 @@ export default async function ProfilePage() {
           <div className="space-y-5">
 
             {/* Profile Header */}
-            <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-
-              {/* Banner */}
-              <div className="h-28 bg-gradient-to-br from-sky-300 via-sky-400 to-sky-500 sm:h-32" />
+            <section className="overflow-hidden rounded-3xl  bg-white ">
 
               {/* User information */}
               <div className="px-5 pb-7 sm:px-8">
@@ -186,7 +178,6 @@ export default async function ProfilePage() {
             </p>
           </div>
         )}
-      </div>
     </main>
   );
 }

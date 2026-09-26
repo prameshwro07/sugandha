@@ -54,7 +54,7 @@ export default function OrderTrackingPage() {
             title="Order Tracking"
             // description="Track your order and stay updated on its delivery status."
             description="Enter your Order ID and the phone number used while placing your
-                order. Order tracking will be available soon."
+                order."
         >
             <section className="text-center">
                 {/* <h2 className="text-2xl font-semibold text-slate-900">

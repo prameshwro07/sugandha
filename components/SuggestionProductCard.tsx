@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -12,7 +13,10 @@ export default function SuggestionProductCard({
   product,
 }: Props) {
   return (
-    <Link href={`/product/${product.slug}`}>
+    <Link
+      href={`/product/${product.slug}`}
+      aria-label={`View ${product.name}`}
+    >
       <article
         className="
           group
@@ -47,28 +51,23 @@ export default function SuggestionProductCard({
 
         {/* Product Content */}
         <div className="p-2">
-
-          {/* Product Name */}
           <h3 className="truncate text-[11px] font-semibold text-slate-800">
             {product.name}
           </h3>
 
-          {/* Notes */}
           <p className="mt-0.5 truncate text-[9px] text-slate-400">
             {product.notes}
           </p>
 
-          {/* Rating + View */}
           <div className="mt-1.5 flex items-center justify-between">
-            <span className="text-[9px] text-amber-500">
-              ★ {product.rating}
+            <span className="text-[9px] text-slate-500">
+              {product.volume}
             </span>
 
             <span className="text-[9px] font-semibold text-sky-500">
               View →
             </span>
           </div>
-
         </div>
       </article>
     </Link>

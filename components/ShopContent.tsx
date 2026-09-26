@@ -7,11 +7,18 @@ import { ProductCard } from "./ProductCard";
 import HomeProductCard from "./HomeProductCard"
 import Link from "next/link";
 
+type CategoryContent = {
+    name: string;
+    title: string;
+    description: string;
+};
+
 type ShopContentProps = {
     initialCategory?: string;
     pageTitle?: string;
     pageDescription?: string;
     breadcrumb?: string;
+    categoryContent?: Record<string, CategoryContent>;
 };
 
 function formatCategory(category: string) {
@@ -39,8 +46,9 @@ export default function ShopContent({
     initialCategory = "all",
     pageTitle = "Explore Our Collection",
     pageDescription =
-    "Discover premium perfumes and roll-on-oils crafted for every personality, occasion, and unforgettable moment with lasting fragrance.",
-    breadcrumb = "Home / Shop",
+    "Discover premium perfumes and Attar crafted for every personality, occasion, and unforgettable moment with lasting fragrance.",
+    breadcrumb = "Home/Shop",
+    categoryContent = {},
 }: ShopContentProps) {
     const router = useRouter();
     const params = useParams();
@@ -136,20 +144,35 @@ export default function ShopContent({
         return matchesCategory && matchesSearch;
     });
 
-    const isSeoCategory = seoCategories.has(selectedCategory);
+    // const isSeoCategory = seoCategories.has(selectedCategory);
 
-    const displayTitle = isSeoCategory
-        ? pageTitle
-        : "Explore Our Collection";
+    // const displayTitle = isSeoCategory
+    //     ? pageTitle
+    //     : "Explore Our Collection";
 
-    const displayDescription = isSeoCategory
-        ? pageDescription
-        :
-        "Shop premium perfumes and roll-on oils online in Nepal. Discover long-lasting fragrances from Sugandha for men, women, and everyone.";
+    // const displayDescription = isSeoCategory
+    //     ? pageDescription
+    //     :
+    //     "Shop premium perfumes and roll-on oils online in Nepal. Discover long-lasting fragrances from Sugandha for men, women, and everyone.";
 
-    const displayBreadcrumb = isSeoCategory
-        ? breadcrumb
-        : "Home / Shop";
+    // const displayBreadcrumb = isSeoCategory
+    //     ? breadcrumb
+    //     : "Home / Shop";
+    const currentCategoryContent =
+    selectedCategory !== "all"
+        ? categoryContent[selectedCategory]
+        : undefined;
+
+const displayTitle =
+    currentCategoryContent?.name ?? pageTitle;
+
+const displayDescription =
+    currentCategoryContent?.description ?? pageDescription;
+
+const displayBreadcrumb =
+    currentCategoryContent
+        ? `Home / Shop / ${currentCategoryContent.name}`
+        : breadcrumb;
 
     const navigateToCategory = (category: string) => {
         const scrollPosition =

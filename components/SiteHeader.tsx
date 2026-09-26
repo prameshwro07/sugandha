@@ -88,7 +88,7 @@ export function SiteHeader() {
               onClick={() => setMobileMenuOpen(false)}
               className="mt-1 flex items-center gap-3 rounded-xl px-4 py-3 text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
             >
-              <ShoppingBag size={16} />
+              <ShoppingBag size={16}/>
               Shop
             </Link>
 
@@ -114,7 +114,7 @@ export function SiteHeader() {
 
           {/* Footer */}
           <div className="mt-auto border-t border-slate-200 p-5">
-            <p className="font-semibold text-slate-900">Sugandha</p>
+            <p className="font-semibold text-sky-600">Sugandha</p>
             <p className="text-sm text-slate-500">Let's Smell Good.</p>
           </div>
         </div>
@@ -135,7 +135,7 @@ export function SiteHeader() {
             alt="Sugandha"
             width={72}
             height={26}
-          // className="h-10 w-auto"
+            style={{ width: "auto", height: "auto" }}
           />
         </Link>
 
@@ -245,7 +245,7 @@ export function SiteHeader() {
             className="relative min-w-0 flex-1 lg:hidden"
             ref={searchRef}
           >
-            <div className="flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 h-7 ">
+            <div className="flex items-center rounded-full border border-sky-200 bg-sky-50 px-2 h-7 ">
               <Search size={16} className="text-slate-400" />
 
               <input
@@ -310,54 +310,18 @@ export function SiteHeader() {
 
           </div>
 
-          {/* <div className="flex items-center gap-1">
-            <Link
-              href="/profile"
-              aria-label="Profile"
-              className="relative flex h-8 w-8 shrink-0 items-center justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
-            >
-              <Image
-                src="/icons/accountImagev1.png"
-                alt="profile icon"
-                width={18}
-                height={18}
-              />
-            </Link>
-
-            <Link
-              href="/cart"
-              aria-label="Cart"
-              className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 hover:bg-sky-100 active:scale-90"
-            >
-              <motion.div animate={controls}>
-                <Image
-                  src="/icons/shoppingBag.png"
-                  alt="Shopping Cart"
-                  width={18}
-                  height={18}
-                />
-              </motion.div>
-
-              {mounted && totalItems > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-400 text-[9px] font-bold text-white">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-          </div> */}
-
-          <div className="flex items-center gap-0">
+          <div className="flex items-center gap-1">
             {/* Profile */}
             <Link
               href="/profile"
               aria-label="Profile"
-              className="relative flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+              className="relative flex h-7 w-7 shrink-0 items-center rounded-2xl justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
             >
               <Image
-                src="/icons/accountImagev1.png"
+                src="/icons/user.png"
                 alt="profile icon"
-                width={18}
-                height={18}
+                width={24}
+                height={24}
                 className="object-contain"
               />
             </Link>
@@ -366,20 +330,20 @@ export function SiteHeader() {
             <Link
               href="/cart"
               aria-label="Cart"
-              className="relative flex h-7 w-7 shrink-0 items-center justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
+              className="relative flex h-7 w-7 shrink-0 items-center rounded-2xl justify-center transition-colors duration-150 hover:bg-sky-100 active:scale-90"
             >
               <motion.div animate={controls}>
                 <Image
-                  src="/icons/shoppingBag.png"
+                  src="/icons/shopping-bag.png"
                   alt="Shopping Cart"
-                  width={18}
-                  height={18}
+                  width={24}
+                  height={24}
                   className="object-contain"
                 />
               </motion.div>
 
               {mounted && totalItems > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-400 text-[9px] font-bold text-white">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-sky-600 text-[9px] font-bold text-white">
                   {totalItems}
                 </span>
               )}

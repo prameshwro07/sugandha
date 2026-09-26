@@ -40,31 +40,35 @@ export default function ProductSuggestions({ product }: Props) {
       {/* Suggestions */}
       <div
         className="
-          grid
-          grid-cols-2
-          gap-3
-          sm:grid-cols-3
-          md:grid-cols-4
-          lg:grid-cols-6
-          xl:grid-cols-7
-          2xl:grid-cols-10
-        "
+    grid
+    grid-cols-2
+    gap-3
+    sm:grid-cols-3
+    md:grid-cols-4
+    lg:grid-cols-6
+    xl:grid-cols-7
+    2xl:grid-cols-10
+  "
       >
-        {suggestions.map((product, index) => (
-          <div
-            key={product.id}
-            className={`
-              ${index >= 4 ? "hidden" : ""}
-              sm:${index >= 6 ? "hidden" : ""}
-              md:${index >= 8 ? "hidden" : ""}
-              lg:${index >= 12 ? "hidden" : ""}
-              xl:${index >= 14 ? "hidden" : ""}
-              2xl:${index >= 20 ? "hidden" : ""}
-            `}
-          >
-            <SuggestionProductCard product={product} />
-          </div>
-        ))}
+        {suggestions.map((product, index) => {
+          const visibilityClasses = [
+            "hidden",
+            index < 6 ? "sm:block" : "",
+            index < 8 ? "md:block" : "",
+            index < 12 ? "lg:block" : "",
+            index < 14 ? "xl:block" : "",
+            index < 20 ? "2xl:block" : "",
+          ].join(" ");
+
+          return (
+            <div
+              key={product.id}
+              className={index < 4 ? "block" : visibilityClasses}
+            >
+              <SuggestionProductCard product={product} />
+            </div>
+          );
+        })}
       </div>
 
     </section>

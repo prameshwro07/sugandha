@@ -34,12 +34,12 @@ export default function HeroIntro() {
           id="home-heading"
           className="mt-2 text-xl font-medium tracking-tight text-slate-900"
         >
-          Perfumes & Roll-Ons in Nepal
+          Perfumes & Attars in Nepal
         </h1>
 
         <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500 md:text-base">
-          Discover premium perfumes and alcohol-free perfume-oils from Sugandha,
-          available online across Nepal.
+          Discover premium perfumes and alcohol-free perfumes & attars from Sugandha,
+          available all across Nepal.
         </p>
 
       </div>

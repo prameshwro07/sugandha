@@ -17,7 +17,7 @@ export default function AboutPage() {
       {/* <Values /> */}
       <HowItWorks />
       {/* <WhyDifferent /> */}
-      <CTA />
+      {/* <CTA /> */}
     </main>
   );
 }

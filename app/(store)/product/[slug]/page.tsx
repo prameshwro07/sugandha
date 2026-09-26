@@ -424,14 +424,14 @@ export default async function ProductPage({
       },
     },
 
-    aggregateRating:
-      product.reviews > 0
-        ? {
-            "@type": "AggregateRating",
-            ratingValue: product.rating,
-            reviewCount: product.reviews,
-          }
-        : undefined,
+    // aggregateRating:
+    //   product.reviews > 0
+    //     ? {
+    //         "@type": "AggregateRating",
+    //         ratingValue: product.rating,
+    //         reviewCount: product.reviews,
+    //       }
+    //     : undefined,
   };
 
   return (

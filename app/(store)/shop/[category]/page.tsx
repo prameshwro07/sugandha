@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ShopContent from "@/components/ShopContent";
+import { products } from "@/lib/products"
 
 type Props = {
     params: Promise<{
@@ -18,9 +19,9 @@ const categoryData: Record<
 > = {
     attar: {
         name: "Attars",
-        title: "Attars in Nepal | Shop Premium Attars Online",
+        title: "Attars in Nepal | Shop Premium Attars in Nepal",
         description:
-            "Shop premium alcohol-free attars online in Nepal. Discover long-lasting fragrances from Sugandha for men, women, and wear.",
+            "Shop premium alcohol-free attars in Nepal. Discover long-lasting fragrances from Sugandha for men, women, and every occasion.",
     },
 
     perfume: {
@@ -98,7 +99,6 @@ export async function generateMetadata({
 
     return {
         title: data.title,
-
         description: data.description,
 
         alternates: {
@@ -130,16 +130,6 @@ export default async function CategoryPage({
     params,
 }: Props) {
     const { category } = await params;
-    const seoCategories = new Set([
-        "men",
-        "women",
-        "unisex",
-        "attar",
-        "perfume",
-        "new",
-        "best-seller",
-        "combo",
-    ]);
 
     const data = categoryData[category];
 
@@ -147,25 +137,48 @@ export default async function CategoryPage({
         notFound();
     }
 
-    const isSeoCategory = seoCategories.has(category);
+    const categoryProducts = products.filter((product) =>
+        product.categories.includes(category)
+    );
+
+    const baseUrl =
+        process.env.NEXT_PUBLIC_SITE_URL ?? "https://shopsugandha.com";
+
+    const categoryUrl = `${baseUrl}/shop/${category}`;
+
+    const itemListSchema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: data.name,
+        url: categoryUrl,
+        numberOfItems: categoryProducts.length,
+        itemListElement: categoryProducts.map((product, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${baseUrl}/product/${product.slug}`,
+            name: product.name,
+        })),
+    };
 
     return (
-        <main className="min-h-[calc(100vh-100px)] py-6 w-full">
-            <ShopContent
-            key={category}
-                initialCategory={category}
-                pageTitle={isSeoCategory ? data.name : "Explore Our Collection"}
-                pageDescription={
-                    isSeoCategory
-                        ? data.description
-                        : "Discover premium alcohol-free attars crafted for every personality and every occasion."
-                }
-                breadcrumb={
-                    isSeoCategory
-                        ? `Home / Shop / ${data.name}`
-                        : "Home / Shop"
-                }
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(itemListSchema),
+                }}
             />
-        </main>
+
+            <main className="min-h-[calc(100vh-100px)] py-6 w-full">
+                <ShopContent
+                    key={category}
+                    initialCategory={category}
+                    pageTitle={data.name}
+                    pageDescription={data.description}
+                    breadcrumb={`Home / Shop / ${data.name}`}
+                    categoryContent={categoryData}
+                />
+            </main>
+        </>
     );
 }

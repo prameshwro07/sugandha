@@ -109,9 +109,8 @@ export const products: Product[] = [
     originalPrice: 599,
 
     images: [
+      "/productImages/blueberryMusk.jpeg",
       "/productImages/blue.png",
-      "/productImages/blueberry1.png",
-      "/productImages/blueberry2.png",
     ],
 
     shortDescription: "A sweet and refreshing blueberry fragrance blended with soft musk for a smooth, fruity, and long-lasting scent.",
@@ -123,7 +122,6 @@ export const products: Product[] = [
       "men",
       "women",
       "unisex",
-      "new",
       "best-seller",
       "attar"
     ],
@@ -150,9 +148,8 @@ export const products: Product[] = [
     originalPrice: 599,
 
     images: [
+      "/productImages/cr7-first.jpeg",
       "/productImages/cr7.png",
-      "/productImages/cr73.png",
-      "/productImages/cr75.png",
     ],
 
     shortDescription: "A bold and energetic fragrance with fresh citrus, aromatic notes, and a warm woody finish—perfect for a confident, modern style.",
@@ -162,7 +159,6 @@ export const products: Product[] = [
 
     categories: [
       "men",
-      "unisex",
       "best-seller",
       "attar"
     ],
@@ -189,8 +185,8 @@ export const products: Product[] = [
     originalPrice: 799,
 
     images: [
-      "/productImages/hawas1.webp",
-      "/productImages/hawas2.jpeg",
+      "/productImages/hawas.jpeg",
+      "/productImages/hawas3.jpeg",
     ],
 
     shortDescription: "A fresh, aquatic, and energetic fragrance with fruity notes and a smooth woody-musky finish.",
@@ -227,7 +223,7 @@ export const products: Product[] = [
     originalPrice: 2499,
 
     images: [
-      "/productImages/amaze4.webp",
+      "/productImages/amaze4.jpeg",
       "/productImages/amaze41.webp",
       "/productImages/amaze42.webp",
     ],
@@ -268,9 +264,8 @@ export const products: Product[] = [
     originalPrice: 599,
 
     images: [
-      "/productImages/redVenilla1.jpg",
-      "/productImages/redVanilla2.webp",
-      "/productImages/redVanilla3.jpg",
+      "/productImages/redVanilla.jpeg",
+      "/productImages/redVanilla2.jpeg",
     ],
 
     shortDescription: "A sweet, elegant, and captivating fragrance with rich vanilla, fruity sweetness, and a warm, sensual finish.",
@@ -306,9 +301,9 @@ export const products: Product[] = [
     originalPrice: 499,
 
     images: [
-      "/productImages/chocolatemusk.png",
+      "/productImages/chocolateBlast.jpeg",
       "/productImages/chocolateMusk2.webp",
-      "/productImages/chocolateMusk3.jpg",
+      // "/productImages/chocolateMusk3.jpg",
     ],
 
     shortDescription: "A rich and irresistible blend of creamy chocolate and soft musk, creating a warm, sweet, and comforting aroma.",
@@ -319,7 +314,8 @@ export const products: Product[] = [
     categories: [
       "unisex",
       "best-seller",
-      "attar"
+      "attar",
+      "women"
     ],
 
     stockStatus: "in-stock",
@@ -344,8 +340,7 @@ export const products: Product[] = [
     originalPrice: 799,
 
     images: [
-      "/productImages/Eclaire.png",
-      "/productImages/Eclaire1.jpeg",
+      "/productImages/eclaire-cream-blast.jpeg",
       "/productImages/Eclaire2.jpeg",
     ],
 
@@ -383,9 +378,8 @@ export const products: Product[] = [
     originalPrice: 599,
 
     images: [
-      "/productImages/frenchTobacco1.jpg",
+      "/productImages/FrenchTobacco1.jpeg",
       "/productImages/frenchTobacco2.webp",
-      "/productImages/frenchTobacco3.webp",
     ],
 
     shortDescription: "A rich and sophisticated fragrance blending warm tobacco, sweet spices, and smooth woody notes for a bold, elegant aroma.",
@@ -397,7 +391,6 @@ export const products: Product[] = [
 
     categories: [
       "men",
-      "unisex",
       "best-seller",
       "attar"
     ],
@@ -424,9 +417,8 @@ export const products: Product[] = [
     originalPrice: 1799,
 
     images: [
-      "/productImages/poshBlueberry1.png",
-      "/productImages/poshBlueberry.png",
-      "/productImages/poshBlueberry2.png",
+      "/productImages/poshBlueberry.jpeg",
+      "/productImages/poshBlueberry1.webp",
     ],
 
     shortDescription: "A sweet and refreshing blueberry fragrance blended with soft musk for a smooth, elegant, and long-lasting scent.",
@@ -439,7 +431,8 @@ export const products: Product[] = [
     categories: [
       "men",
       "unisex",
-      "perfume"
+      "perfume",
+      "women"
     ],
 
     stockStatus: "in-stock",
@@ -488,7 +481,7 @@ export const products: Product[] = [
     volume: "100ml",
 
     rating: 4.8,
-    reviews: 32,
+    reviews: 3,
 
     notes: "bergamot, apple, cinnamon, lavender, muguet, orange blossom, vanilla, tonka bean, amber, patchouli, musk",
   },
@@ -503,8 +496,7 @@ export const products: Product[] = [
     originalPrice: 1349,
 
     images: [
-      "/productImages/combo1.jpeg",
-      "/productImages/blueberry.png",
+      "/productImages/comboBlueberryChocolateMusk.jpeg",
     ],
 
     shortDescription: "A perfect sweet & fresh fragrance combo — 20ML Chocolate Musk paired with 6ML Blueberry Musk, available together for just Rs. 1,099.",
@@ -524,8 +516,8 @@ export const products: Product[] = [
 
     volume: "20ml and 6ml",
 
-    rating: 4.8,
-    reviews: 32,
+    rating: 3.9,
+    reviews: 13,
 
     notes: "chocolate, blueberry",
   },
