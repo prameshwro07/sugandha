@@ -6,6 +6,7 @@ import Link from "next/link";
 import { products, formatPrice } from "@/lib/products";
 import { Search, House, ShoppingBag, Phone, Info, UserRound, ShoppingCart } from "lucide-react";
 import { useCart } from "@/src/store/cart";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 import { useRouter } from "next/navigation";
 import AnnouncementBar from "./announcementBar";
 import { motion, useAnimation } from "framer-motion";
@@ -196,6 +197,7 @@ export function SiteHeader() {
                         onMouseDown={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
+                          trackMetaEvent("Search", { search_string: search.trim(), content_ids: [product.id], content_type: "product" });
                           router.push(`/product/${product.slug}`);
                         }}
                         className="flex cursor-pointer items-center gap-4 p-4 transition-all duration-200 hover:bg-sky-50"
@@ -269,7 +271,7 @@ export function SiteHeader() {
                         <div
                           key={product.id}
                           onClick={() => {
-                            // router.push(`/checkout?buyNow=${product.id}`);
+                            trackMetaEvent("Search", { search_string: search.trim(), content_ids: [product.id], content_type: "product" });
                             router.push(`/product/${product.slug}`);
                             setSearch("");
                           }}

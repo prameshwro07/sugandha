@@ -2,7 +2,6 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { io, type Socket } from "socket.io-client";
 import {
   CheckCircle2,
   CircleDollarSign,
@@ -10,6 +9,7 @@ import {
   Loader2,
   LogOut,
   PackageCheck,
+  RefreshCw,
   Search,
   XCircle,
   type LucideIcon,
@@ -37,8 +37,6 @@ type StatusFilter =
   | "Cancelled";
 type ConfirmState = { order: OrderDto; status: "Delivered" | "Cancelled" } | null;
 type FilterState = { view: View; status: StatusFilter; search: string };
-
-const socketUrl = process.env.NEXT_PUBLIC_SOCKET_IO_URL;
 
 const tableHeadings = ["Customer", "Phone", "Email", "Address", "Product", "Price", "Payment", "Date", "Time", "Status", "Action"] as const;
 
@@ -88,11 +86,6 @@ function matchesCurrentFilters(order: OrderDto, filters: FilterState) {
   );
 }
 
-function applyCreatedOrder(current: OrderDto[], order: OrderDto, filters: FilterState) {
-  const withoutDuplicate = current.filter((item) => item.id !== order.id);
-  return matchesCurrentFilters(order, filters) ? [order, ...withoutDuplicate] : withoutDuplicate;
-}
-
 function applyUpdatedOrder(current: OrderDto[], order: OrderDto, filters: FilterState) {
   const exists = current.some((item) => item.id === order.id);
   if (!matchesCurrentFilters(order, filters)) {
@@ -104,14 +97,6 @@ function applyUpdatedOrder(current: OrderDto[], order: OrderDto, filters: Filter
   }
 
   return current.map((item) => (item.id === order.id ? order : item));
-}
-
-function updateStatsForCreated(current: Stats) {
-  return {
-    ...current,
-    totalOrders: current.totalOrders + 1,
-    pendingOrders: current.pendingOrders + 1,
-  };
 }
 
 function updateStatsForStatusChange(current: Stats, previous: OrderDto | undefined, next: OrderDto) {
@@ -171,7 +156,6 @@ export function DashboardClient() {
   const [loading, setLoading] = useState(true);
   const [confirm, setConfirm] = useState<ConfirmState>(null);
   const [savingId, setSavingId] = useState("");
-  const [liveState, setLiveState] = useState(socketUrl ? "Connecting" : "Socket URL not configured");
   const filtersRef = useRef<FilterState>({ view, status, search });
   const ordersRef = useRef<OrderDto[]>([]);
 
@@ -209,58 +193,6 @@ export function DashboardClient() {
       void loadOrders();
     });
   }, [loadOrders]);
-
-  const handleCreatedOrder = useCallback((order: OrderDto) => {
-    const alreadyVisible = ordersRef.current.some((item) => item.id === order.id);
-    setOrders((current) => applyCreatedOrder(current, order, filtersRef.current));
-    if (!alreadyVisible) {
-      setStats((current) => updateStatsForCreated(current));
-    }
-  }, []);
-
-  const handleUpdatedOrder = useCallback((order: OrderDto) => {
-    const previous = ordersRef.current.find((item) => item.id === order.id);
-    setOrders((current) => applyUpdatedOrder(current, order, filtersRef.current));
-    setStats((current) => updateStatsForStatusChange(current, previous, order));
-  }, []);
-
-  useEffect(() => {
-    if (!socketUrl) {
-      return;
-    }
-
-    let socket: Socket | null = null;
-    let cancelled = false;
-
-    async function connectSocket() {
-      const response = await fetch("/api/owner/socket-token", { method: "POST" });
-      const result = await response.json();
-
-      if (!response.ok || cancelled) {
-        setLiveState("Socket auth unavailable");
-        return;
-      }
-
-      socket = io(socketUrl as string, {
-        transports: ["websocket"],
-        reconnection: true,
-        auth: { token: result.token },
-      });
-
-      socket.on("connect", () => setLiveState("Live"));
-      socket.on("disconnect", () => setLiveState("Reconnecting"));
-      socket.on("connect_error", () => setLiveState("Disconnected"));
-      socket.on("order:created", handleCreatedOrder);
-      socket.on("order:updated", handleUpdatedOrder);
-    }
-
-    void connectSocket();
-
-    return () => {
-      cancelled = true;
-      socket?.disconnect();
-    };
-  }, [handleCreatedOrder, handleUpdatedOrder]);
 
   const filteredOrders = useMemo(() => orders, [orders]);
 
@@ -305,9 +237,18 @@ export function DashboardClient() {
         <header className="flex flex-col gap-4 border-b border-sky-100 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-            <p className="mt-1 text-sm text-slate-500">Realtime status: {liveState}</p>
+            <p className="mt-1 text-sm text-slate-500">Review and manage customer orders.</p>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-sky-200 bg-white px-4 font-semibold disabled:opacity-60"
+              onClick={() => void loadOrders()}
+              disabled={loading}
+              type="button"
+            >
+              <RefreshCw size={18} aria-hidden="true" className={loading ? "animate-spin" : ""} />
+              Refresh
+            </button>
             <Link
               href="/owner/contactmessage"
               className="border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-700 hover:border-sky-500 hover:text-sky-600"

@@ -38,7 +38,7 @@ export default function HeroIntro() {
         </h1>
 
         <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500 md:text-base">
-          Discover premium perfumes and alcohol-free perfumes & attars from Sugandha,
+          Discover premium perfumes & alcohol-free attars from Sugandha,
           available all across Nepal.
         </p>
 

@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Product } from "@/lib/products";
 import { toast } from "sonner";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 
 export interface CartItem extends Product {
   quantity: number;
@@ -48,6 +49,9 @@ export const useCart = create<CartStore>()(
     return;
   }
 
+  const current = get().items.find((item) => item.id === product.id);
+  const quantity = (current?.quantity ?? 0) + 1;
+
   set((state) => {
     const existing = state.items.find(
       (item) => item.id === product.id
@@ -79,6 +83,16 @@ export const useCart = create<CartStore>()(
         },
       ],
     };
+  });
+
+  trackMetaEvent("AddToCart", {
+    content_ids: [product.id],
+    content_type: "product",
+    content_name: product.name,
+    contents: [{ id: product.id, quantity, item_price: product.price }],
+    value: product.price * quantity,
+    currency: "NPR",
+    num_items: quantity,
   });
 },
       removeFromCart: (id) =>

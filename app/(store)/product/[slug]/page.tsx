@@ -221,6 +221,7 @@ import { getProductBySlug, products } from "@/lib/products";
 import ProductGallery from "@/components/ProductGallery";
 import ProductInfo from "@/components/ProductInfo";
 import ProductSuggestions from "@/components/ProductSuggestions";
+import ViewContent from "@/components/ViewContent";
 
 type Props = {
   params: Promise<{
@@ -436,6 +437,7 @@ export default async function ProductPage({
 
   return (
     <>
+      <ViewContent product={product} />
       {/* Product structured data */}
       <script
         type="application/ld+json"

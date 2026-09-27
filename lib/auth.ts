@@ -40,15 +40,6 @@ export async function createOwnerSession() {
     .sign(secretKey());
 }
 
-export async function createOwnerSocketToken() {
-  return new SignJWT({ role: "owner", scope: "orders:read" })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setAudience("socket")
-    .setExpirationTime("10m")
-    .sign(secretKey());
-}
-
 export async function getOwnerSession() {
   const store = await cookies();
   const token = store.get(cookieName)?.value;

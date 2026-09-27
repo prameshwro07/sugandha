@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getOwnerSession } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 import { OrderModel } from "@/lib/models/order";
-import { emitOrderEvent } from "@/lib/realtime";
 import { serializeOrder } from "@/lib/orders";
 import { statusUpdateSchema } from "@/lib/validation";
 import { sendDeliveryEmail, sendCancellationEmail } from "@/lib/email";
@@ -67,8 +66,6 @@ export async function PATCH(
     }
 
     const serialized = serializeOrder(order);
-    await emitOrderEvent("order:updated", serialized);
-
     return NextResponse.json({ order: serialized });
   } catch {
     return NextResponse.json(

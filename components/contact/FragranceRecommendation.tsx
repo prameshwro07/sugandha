@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { trackMetaEvent } from "@/lib/meta-pixel";
 import { Sparkles } from "lucide-react";
 
 const fragrances = [
@@ -81,6 +82,7 @@ Could you recommend something for me?`;
         <a
           href={whatsappLink}
           target="_blank"
+          onClick={() => trackMetaEvent("Contact", { content_name: "WhatsApp fragrance recommendation" })}
           className="mt-12 inline-flex rounded-xl bg-green-500 px-8 py-4 font-semibold text-white transition hover:bg-green-600"
         >
           Get Recommendation

@@ -302,7 +302,7 @@ export const products: Product[] = [
 
     images: [
       "/productImages/chocolateBlast.jpeg",
-      "/productImages/chocolateMusk2.webp",
+      "/productImages/chocolatemusk21.webp",
       // "/productImages/chocolateMusk3.jpg",
     ],
 

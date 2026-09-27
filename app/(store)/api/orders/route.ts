@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
-import { emitOrderEvent } from "@/lib/realtime";
 import { OrderModel } from "@/lib/models/order";
 import { orderCreateSchema } from "@/lib/validation";
 import { orderDateParts, serializeOrder } from "@/lib/orders";
@@ -53,7 +52,7 @@ export async function POST(request: Request) {
         name: p.name,
         price: p.price,
         quantity: p.quantity,
-        image: p.image,
+        images: p.image ? [p.image] : [],
       })),
 
       totalPrice,
@@ -62,20 +61,26 @@ export async function POST(request: Request) {
       ...dateParts,
     });
 
-    await sendOrderConfirmationEmail({
-      customerName: order.customerName,
-      email: order.email,
-      orderId: order._id.toString(),
-      products: order.products,
-      totalPrice: order.totalPrice,
-      paymentMethod: order.paymentMethod,
-    });
+    if (order.email) {
+      try {
+        await sendOrderConfirmationEmail({
+          customerName: order.customerName,
+          email: order.email,
+          orderId: order._id.toString(),
+          products: order.products,
+          totalPrice: order.totalPrice,
+          paymentMethod: order.paymentMethod,
+        });
+      } catch (emailError) {
+        const code =
+          typeof emailError === "object" && emailError !== null && "code" in emailError
+            ? String(emailError.code)
+            : "unknown";
+        console.error("ORDER_CONFIRMATION_EMAIL_FAILED", code);
+      }
+    }
 
     const serialized = serializeOrder(order);
-
-    emitOrderEvent("order:created", serialized).catch((eventError) => {
-      console.error("Could not emit order creation event.", eventError);
-    });
 
     return NextResponse.json({ order: serialized }, { status: 201 });
   } catch (error) {

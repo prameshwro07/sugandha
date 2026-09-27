@@ -29,6 +29,7 @@ import ImageSlider from "@/components/imageSlider";
 import { useCart } from "@/src/store/cart";
 import { useSearchParams } from "next/navigation";
 import { products } from "@/lib/products";
+import { trackCheckoutOncePerVisit, trackMetaEventOnce } from "@/lib/meta-pixel";
 
 export function CheckoutClient() {
   const { items, clearCart, removeFromCart } = useCart();
@@ -77,6 +78,22 @@ export function CheckoutClient() {
     0,
     FREE_DELIVERY_THRESHOLD - totalPrice,
   );
+
+  useEffect(() => {
+    if (checkoutItems.length === 0) return;
+    trackCheckoutOncePerVisit({
+      content_ids: checkoutItems.map((item) => item.id),
+      content_type: "product",
+      contents: checkoutItems.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+        item_price: item.price,
+      })),
+      num_items: totalItems,
+      value: finalTotal,
+      currency: "NPR",
+    });
+  }, [checkoutItems, finalTotal, totalItems]);
 
 
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -215,8 +232,24 @@ export function CheckoutClient() {
         return;
       }
 
+      const order = result.order;
+      if (order?.id) {
+        trackMetaEventOnce("Purchase", order.id, {
+          content_ids: order.products.map((item: { id: string }) => item.id),
+          content_type: "product",
+          content_name: order.products.map((item: { name: string }) => item.name).join(", "),
+          contents: order.products.map((item: { id: string; quantity: number; price: number }) => ({
+            id: item.id,
+            quantity: item.quantity,
+            item_price: item.price,
+          })),
+          num_items: order.products.reduce((sum: number, item: { quantity: number }) => sum + item.quantity, 0),
+          value: order.totalPrice,
+          currency: "NPR",
+        });
+      }
       setConfirmationName(values.customerName.split(" ")[0]);
-      setOrderId(result.orderId);
+      setOrderId(order?.id ?? "");
 
       if (!buyNowId) {
         clearCart();

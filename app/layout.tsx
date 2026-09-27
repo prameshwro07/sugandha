@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
+import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
 const inter = Inter({
@@ -165,6 +166,7 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
+        <MetaPixel />
         {children}
       </body>
     </html>
