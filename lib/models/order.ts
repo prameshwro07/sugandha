@@ -42,8 +42,10 @@ const orderSchema = new Schema(
 );
 
 
-// orderSchema.index({ timestamp: -1 });
-// orderSchema.index({ customerName: "text", phone: "text", email: "text", productName: "text" });
+orderSchema.index({ timestamp: -1 });
+orderSchema.index({ status: 1, timestamp: -1 });
+orderSchema.index({ date: 1, timestamp: -1 });
+orderSchema.index({ email: 1, createdAt: -1 });
 orderSchema.index({
   "products.name": "text",
   customerName: "text",

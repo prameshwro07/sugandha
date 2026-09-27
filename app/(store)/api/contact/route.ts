@@ -2,38 +2,35 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { connectToDatabase } from "@/lib/db";
 import ContactMessage from "@/lib/models/ContactMessage";
+import { contactMessageSchema } from "@/lib/validation";
+import { readJsonBody, RequestBodyTooLargeError } from "@/lib/request-body";
+
+const MAX_CONTACT_BODY_BYTES = 16 * 1024;
 
 export async function POST(request: Request) {
   try {
     const session = await auth();
 
-    const body = await request.json();
-
-    const name = body.name?.trim();
-    const email = body.email?.trim();
-    const phone = body.phone?.trim();
-    const subject = body.subject?.trim();
-    const message = body.message?.trim();
-
-    // Validate required fields
-    if (!name || !email || !phone || !subject || !message) {
+    let body: unknown;
+    try {
+      body = await readJsonBody(request, MAX_CONTACT_BODY_BYTES);
+    } catch (error) {
+      const tooLarge = error instanceof RequestBodyTooLargeError;
       return NextResponse.json(
-        {
-          error: "Please fill in all fields.",
-        },
+        { error: tooLarge ? "Contact request is too large." : "Invalid request body." },
+        { status: tooLarge ? 413 : 400 }
+      );
+    }
+
+    const payload = contactMessageSchema.safeParse(body);
+    if (!payload.success) {
+      return NextResponse.json(
+        { error: "Please check the contact form fields and try again." },
         { status: 400 }
       );
     }
 
-    // Basic message length protection
-    if (message.length > 5000) {
-      return NextResponse.json(
-        {
-          error: "Message is too long.",
-        },
-        { status: 400 }
-      );
-    }
+    const { name, email, phone, subject, message } = payload.data;
 
     await connectToDatabase();
 

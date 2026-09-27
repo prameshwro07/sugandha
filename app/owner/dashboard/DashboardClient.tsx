@@ -152,31 +152,40 @@ export function DashboardClient() {
   const [view, setView] = useState<View>("all");
   const [status, setStatus] = useState<StatusFilter>("all");
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [confirm, setConfirm] = useState<ConfirmState>(null);
   const [savingId, setSavingId] = useState("");
   const filtersRef = useRef<FilterState>({ view, status, search });
   const ordersRef = useRef<OrderDto[]>([]);
+  const ordersRequestIdRef = useRef(0);
 
   useEffect(() => {
     filtersRef.current = { view, status, search };
   }, [search, status, view]);
 
   useEffect(() => {
+    const timeout = setTimeout(() => setDebouncedSearch(search), 400);
+    return () => clearTimeout(timeout);
+  }, [search]);
+
+  useEffect(() => {
     ordersRef.current = orders;
   }, [orders]);
 
   const loadOrders = useCallback(async () => {
+    const requestId = ++ordersRequestIdRef.current;
     setLoading(true);
     setMessage("");
     const params = new URLSearchParams();
     if (view !== "all") params.set("view", view);
     if (status !== "all") params.set("status", status);
-    if (search.trim()) params.set("search", search.trim());
+    if (debouncedSearch.trim()) params.set("search", debouncedSearch.trim());
 
     const response = await fetch(`/api/orders?${params.toString()}`, { cache: "no-store" });
     const result = await response.json();
+    if (requestId !== ordersRequestIdRef.current) return;
     setLoading(false);
 
     if (!response.ok) {
@@ -186,7 +195,7 @@ export function DashboardClient() {
 
     setOrders(result.orders);
     setStats(result.stats);
-  }, [search, status, view]);
+  }, [debouncedSearch, status, view]);
 
   useEffect(() => {
     queueMicrotask(() => {

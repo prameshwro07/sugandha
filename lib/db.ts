@@ -25,6 +25,8 @@ export async function connectToDatabase() {
   cache.promise ??= mongoose.connect(uri, {
     bufferCommands: false,
     serverSelectionTimeoutMS: 5000,
+    // Keep the per-process socket ceiling modest for low-resource hosting.
+    maxPoolSize: 10,
   });
 
   cache.conn = await cache.promise;

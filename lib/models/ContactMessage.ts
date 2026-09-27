@@ -61,6 +61,8 @@ const ContactMessageSchema = new Schema<IContactMessage>(
   }
 );
 
+ContactMessageSchema.index({ createdAt: -1 });
+
 const ContactMessage: Model<IContactMessage> =
   mongoose.models.ContactMessage ||
   mongoose.model<IContactMessage>(

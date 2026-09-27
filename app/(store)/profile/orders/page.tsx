@@ -12,6 +12,8 @@ import { auth } from "@/auth";
 import { connectToDatabase } from "@/lib/db";
 import{ OrderModel }from "@/lib/models/order";
 
+const RECENT_ORDER_LIMIT = 100;
+
 function formatDate(date: Date) {
   return new Intl.DateTimeFormat("en-NP", {
     dateStyle: "medium",
@@ -46,6 +48,7 @@ export default async function MyOrdersPage() {
     email: session.user.email,
   })
     .sort({ createdAt: -1 })
+    .limit(RECENT_ORDER_LIMIT)
     .lean();
 
 

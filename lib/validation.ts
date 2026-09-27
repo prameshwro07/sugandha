@@ -8,20 +8,21 @@ export const orderCreateSchema = z.object({
   products: z
     .array(
       z.object({
-        id: z.string().min(1),
-        name: z.string().min(1),
+        id: z.string().min(1).max(100),
+        name: z.string().min(1).max(200),
         price: z.number().min(0),
         quantity: z.number().min(1).max(50),
-        image: z.string().min(1).optional(),
+        image: z.string().min(1).max(2048).optional(),
       })
     )
-    .min(1, "Cart cannot be empty."),
+    .min(1, "Cart cannot be empty.")
+    .max(25, "An order cannot contain more than 25 different items."),
 
   paymentMethod: z.enum(paymentMethods, {
     error: "Please choose a payment method.",
   }),
 
-  customerName: z.string().trim().min(2, "Enter your full name."),
+  customerName: z.string().trim().min(2, "Enter your full name.").max(120),
 
   phone: z
     .string()
@@ -33,11 +34,20 @@ export const orderCreateSchema = z.object({
     .string()
     .trim()
     .email("Enter a valid email address.")
+    .max(254)
     .trim()
     .toLowerCase()
     .optional(),
 
-  address: z.string().trim().min(8, "Enter your complete delivery address."),
+  address: z.string().trim().min(8, "Enter your complete delivery address.").max(1000),
+});
+
+export const contactMessageSchema = z.object({
+  name: z.string().trim().min(1).max(120),
+  email: z.string().trim().min(1).max(254).email(),
+  phone: z.string().trim().min(1).max(30),
+  subject: z.string().trim().min(1).max(200),
+  message: z.string().trim().min(1).max(5000),
 });
 
 
@@ -56,4 +66,3 @@ export type OrderCreateInput = z.infer<typeof orderCreateSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type PaymentMethod = (typeof paymentMethods)[number];
 export type OrderStatus = (typeof orderStatuses)[number];
-

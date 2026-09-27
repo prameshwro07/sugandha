@@ -5,10 +5,24 @@ import { orderCreateSchema } from "@/lib/validation";
 import { orderDateParts, serializeOrder } from "@/lib/orders";
 import { getOwnerSession } from "@/lib/auth";
 import { sendOrderConfirmationEmail } from "@/lib/email";
+import { readJsonBody, RequestBodyTooLargeError } from "@/lib/request-body";
+
+const MAX_ORDER_BODY_BYTES = 64 * 1024;
 
 export async function POST(request: Request) {
   try {
-    const payload = orderCreateSchema.safeParse(await request.json());
+    let body: unknown;
+    try {
+      body = await readJsonBody(request, MAX_ORDER_BODY_BYTES);
+    } catch (error) {
+      const tooLarge = error instanceof RequestBodyTooLargeError;
+      return NextResponse.json(
+        { message: tooLarge ? "Order request is too large." : "Invalid request body." },
+        { status: tooLarge ? 413 : 400 },
+      );
+    }
+
+    const payload = orderCreateSchema.safeParse(body);
 
     if (!payload.success) {
       return NextResponse.json(
@@ -129,24 +143,42 @@ export async function GET(request: Request) {
     const orders = await OrderModel.find(filter)
       .sort({ timestamp: -1 })
       .limit(250)
-      .lean(false);
-    const allOrders = await OrderModel.find({})
-      .select("status price date")
       .lean();
     const today = orderDateParts(now).date;
-
-    const stats = allOrders.reduce(
-      (acc, order) => {
-        acc.totalOrders += 1;
-        if (order.status === "Pending") acc.pendingOrders += 1;
-        if (order.status === "Delivered") {
-          acc.deliveredOrders += 1;
-          if (order.date === today) acc.todayRevenue += order.price;
-        }
-        return acc;
+    const [statsResult] = await OrderModel.aggregate<StatsResult>([
+      {
+        $group: {
+          _id: null,
+          totalOrders: { $sum: 1 },
+          pendingOrders: {
+            $sum: { $cond: [{ $eq: ["$status", "Pending"] }, 1, 0] },
+          },
+          deliveredOrders: {
+            $sum: { $cond: [{ $eq: ["$status", "Delivered"] }, 1, 0] },
+          },
+          todayRevenue: {
+            $sum: {
+              $cond: [
+                {
+                  $and: [
+                    { $eq: ["$status", "Delivered"] },
+                    { $eq: ["$date", today] },
+                  ],
+                },
+                { $ifNull: ["$price", 0] },
+                0,
+              ],
+            },
+          },
+        },
       },
-      { totalOrders: 0, pendingOrders: 0, deliveredOrders: 0, todayRevenue: 0 },
-    );
+    ]);
+    const stats = {
+      totalOrders: statsResult?.totalOrders ?? 0,
+      pendingOrders: statsResult?.pendingOrders ?? 0,
+      deliveredOrders: statsResult?.deliveredOrders ?? 0,
+      todayRevenue: statsResult?.todayRevenue ?? 0,
+    };
 
     return NextResponse.json({
       orders: orders.map(serializeOrder),
@@ -159,3 +191,10 @@ export async function GET(request: Request) {
     );
   }
 }
+
+type StatsResult = {
+  totalOrders: number;
+  pendingOrders: number;
+  deliveredOrders: number;
+  todayRevenue: number;
+};
