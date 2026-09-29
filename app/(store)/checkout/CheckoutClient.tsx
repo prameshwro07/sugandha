@@ -302,7 +302,7 @@ export function CheckoutClient() {
     <main className="min-h-screen bg-slate-50 px-4 py-6 text-slate-800 sm:py-10">
       {/* <div className="mx-auto mb-6 max-w-5xl"></div> */}
       <div className="mx-auto grid max-w-5xl items-start gap-6 lg:grid-cols-[360px_1fr]">
-        <aside className="order-1 h-fit rounded-xl border border-sky-100 bg-white p-5 shadow-sm lg:sticky lg:top-6">
+        <aside className="order-1 h-fit border border-sky-100 bg-white p-5 shadow-sm lg:sticky lg:top-6">
           <Link
             href="/"
             className="mb-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-600"
@@ -315,7 +315,7 @@ export function CheckoutClient() {
             {checkoutItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-4 rounded-xl border border-slate-200 p-4"
+                className="flex items-center gap-4 rounded-sm border border-slate-200 p-4"
               >
                 <img
                   src={item.images[0]}
@@ -361,13 +361,13 @@ export function CheckoutClient() {
             ))}
           </div>
 
-          <div className="mt-6 rounded-xl bg-sky-50 p-4">
+          <div className="mt-6 rounded-sm bg-sky-50 p-4">
             <p className="text-sm text-slate-600">Products</p>
 
             <p className="text-2xl font-bold">{totalItems}</p>
           </div>
           <hr className="my-6 border-slate-200" />
-          <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <div className="mt-6 rounded-sm border border-slate-200 bg-slate-50 p-4">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">
               Order Summary
             </h3>
@@ -407,7 +407,7 @@ export function CheckoutClient() {
           </div>
         </aside>
 
-        <section className="order-2 rounded-lg border  border-sky-100 bg-white p-5 shadow-sm sm:p-7 lg:order-2">
+        <section className="order-2 border  border-sky-100 bg-white p-5 shadow-sm sm:p-7 lg:order-2">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -596,7 +596,7 @@ export function CheckoutClient() {
             ) : null}
             <button
               disabled={isSubmitting}
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-sky-400 px-5 text-base font-medium text-slate-900 disabled:cursor-not-allowed disabled:opacity-70 transition-transform duration-150 active:scale-90"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-sky-400 px-5 text-base font-medium text-slate-900 disabled:cursor-not-allowed disabled:opacity-70 transition-transform duration-150 active:scale-90 hover:text-white ease-in-out group-hover:translate-x-1"
               type="submit"
             >
               {isSubmitting ? (

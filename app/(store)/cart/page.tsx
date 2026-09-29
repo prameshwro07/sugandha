@@ -1,39 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import { Trash2, ShoppingCart} from "lucide-react";
+import { Trash2, ShoppingCart, ArrowRight } from "lucide-react";
 import { useCart } from "@/src/store/cart";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function CartPage() {
-const { items, increaseQuantity, decreaseQuantity, removeFromCart } =
-  useCart();
+  const { items, increaseQuantity, decreaseQuantity, removeFromCart } =
+    useCart();
 
-const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
-const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
-const totalPrice = items.reduce(
-  (sum, item) => sum + item.price * item.quantity,
-  0,
-);
+  const totalPrice = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
 
-// Delivery
-const FREE_DELIVERY_THRESHOLD = 999;
-const DELIVERY_FEE = 79;
+  // Delivery
+  const FREE_DELIVERY_THRESHOLD = 999;
+  const DELIVERY_FEE = 79;
 
-const deliveryFee =
-  totalPrice >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+  const deliveryFee =
+    totalPrice >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
 
-const finalTotal = totalPrice + deliveryFee;
+  const finalTotal = totalPrice + deliveryFee;
 
-const amountToFreeDelivery = Math.max(
-  0,
-  FREE_DELIVERY_THRESHOLD - totalPrice,
-);
+  const amountToFreeDelivery = Math.max(
+    0,
+    FREE_DELIVERY_THRESHOLD - totalPrice,
+  );
 
-const router = useRouter();
+  const router = useRouter();
 
   return (
     <main className="mx-auto flex min-h-[calc(100vh-100px)] max-w-7xl flex-col px-4 py-10">
@@ -50,9 +50,13 @@ const router = useRouter();
 
           <Link
             href="/"
-            className="mt-6 rounded-xl bg-sky-400 px-6 py-3 font-semibold text-slate-900 transition hover:bg-sky-500"
+            className="group mt-6 flex items-center justify-center gap-2 border border-slate-200 bg-white px-10 py-3 font-semibold text-slate-900 transition hover:bg-sky-50"
           >
             Continue Shopping
+            <ArrowRight
+              size={18}
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            />
           </Link>
         </div>
       ) : (
@@ -62,12 +66,12 @@ const router = useRouter();
             {items.map((item) => (
               <div
                 key={item.id}
-                 className="flex items-center gap-3 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:gap-5 sm:p-5"
+                className="flex items-center rounded-sm gap-3 overflow-hidden border border-slate-200 bg-white p-4 shadow-sm sm:gap-5 sm:p-5"
               >
                 <img
                   src={item.images[0]}
                   alt={item.name}
-                  className="h-20 w-20 shrink-0 rounded-xl object-cover sm:h-28 sm:w-28"
+                  className="h-20 w-20 shrink-0 rounded-sm object-cover sm:h-28 sm:w-28"
                 />
 
                 <div className="min-w-0 flex-1">
@@ -107,7 +111,7 @@ const router = useRouter();
                     </div>
 
                     <button
-                      onClick={() => removeFromCart(item.id)} 
+                      onClick={() => removeFromCart(item.id)}
                       className="shrink-0 rounded-lg p-2 text-red-500 transition hover:bg-red-50 hover:text-red-600">
                       <Trash2 size={20} />
                     </button>
@@ -118,7 +122,7 @@ const router = useRouter();
           </div>
 
           {/* Right Side */}
-          <aside className="h-fit rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <aside className="h-fit border border-slate-200 bg-white p-6 shadow-sm">
             <h2 className="text-2xl font-bold">Order Summary</h2>
 
             <div className="mt-6 space-y-4">
@@ -140,14 +144,14 @@ const router = useRouter();
                 <span className="text-slate-600">Delivery</span>
 
                 {deliveryFee === 0 ? (
-  <span className="font-semibold text-green-600">
-    Free
-  </span>
-) : (
-  <span className="font-semibold">
-    Rs. {deliveryFee.toLocaleString()}
-  </span>
-)}
+                  <span className="font-semibold text-green-600">
+                    Free
+                  </span>
+                ) : (
+                  <span className="font-semibold">
+                    Rs. {deliveryFee.toLocaleString()}
+                  </span>
+                )}
               </div>
 
               <hr className="text-slate-200" />
@@ -160,35 +164,38 @@ const router = useRouter();
                 </span>
               </div>
             </div>
-<div
-  className={`mt-6 rounded-xl p-4 text-center text-sm font-medium ${
-    totalPrice < FREE_DELIVERY_THRESHOLD
-      ? "bg-amber-50 text-amber-700"
-      : "bg-green-50 text-green-700"
-  }`}
->
-  {totalPrice < FREE_DELIVERY_THRESHOLD ? (
-    <>
-      {/* Add Rs. {amountToFreeDelivery.toLocaleString()} more to get{" "} */}
-      Add more pruducts to get{" "}
-      <strong>FREE delivery</strong> 🎉
-    </>
-  ) : (
-    <>You unlocked <strong>FREE delivery!</strong></>
-  )}
-</div>
-            
+            <div
+              className={`mt-6 p-4 text-center text-sm font-medium ${totalPrice < FREE_DELIVERY_THRESHOLD
+                ? "bg-amber-50 text-amber-700"
+                : "bg-green-50 text-green-700"
+                }`}
+            >
+              {totalPrice < FREE_DELIVERY_THRESHOLD ? (
+                <>
+                  {/* Add Rs. {amountToFreeDelivery.toLocaleString()} more to get{" "} */}
+                  Add more pruducts to get{" "}
+                  <strong>FREE delivery</strong> 🎉
+                </>
+              ) : (
+                <>You unlocked <strong>FREE delivery!</strong></>
+              )}
+            </div>
+
 
             <Link
               href="/checkout"
-              className="mt-8 block w-full rounded-xl border-slate-200 bg-sky-400 py-3 text-center font-semibold text-slate-900 transition hover:bg-sky-500"
+              className="mt-8 w-full border border-slate-200 bg-sky-300 py-3 text-center font-semibold text-slate-900 transition hover:bg-sky-600 hover:text-white flex items-center justify-center gap-2"
             >
               Proceed to Checkout
+              <ArrowRight
+                size={18}
+                className="hidden transition-transform duration-200 group-hover:translate-x-1 lg:block"
+              />
             </Link>
 
             <Link
               href="/"
-              className="mt-3 block w-full rounded-xl border border-slate-200 py-3 text-center font-semibold transition hover:bg-slate-50"
+              className="group mt-3 w-full flex items-center gap-4 justify-center border border-slate-200 py-3 text-center font-semibold transition hover:bg-sky-100"
             >
               Continue Shopping
             </Link>

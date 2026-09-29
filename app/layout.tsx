@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -166,7 +167,24 @@ export default function RootLayout({
             __html: JSON.stringify(websiteSchema),
           }}
         />
+
         <MetaPixel />
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-S2JR0KZH1B');
+          `}
+        </Script>
+
         {children}
       </body>
     </html>

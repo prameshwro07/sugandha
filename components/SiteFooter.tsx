@@ -149,6 +149,8 @@ export function SiteFooter() {
 
               <a
                 href="https://wa.me/9779744589112"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Image
                   src="/icons/whatsAppv2.0.png"
@@ -160,6 +162,8 @@ export function SiteFooter() {
 
               <a
                 href="https://www.facebook.com/share/1E1ezMVsAG/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Image
                   src="/icons/facebook.png"
@@ -171,6 +175,8 @@ export function SiteFooter() {
 
               <a
                 href="https://www.instagram.com/shopsugandha/"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Image
                   src="/icons/instagram.png"
@@ -182,6 +188,8 @@ export function SiteFooter() {
 
               <a
                 href="https://www.tiktok.com/@shopsugandha"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Image
                   src="/icons/tiktok.png"

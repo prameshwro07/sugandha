@@ -98,7 +98,6 @@ export default function ProductInfo({ product }: Props) {
             items-center
             justify-center
             gap-2
-            rounded-lg
             border
             border-slate-200
             text-sm
@@ -106,11 +105,11 @@ export default function ProductInfo({ product }: Props) {
             transition-transform
             duration-150
             hover:bg-sky-50
+            bg-white
             active:scale-[0.98]
             disabled:cursor-not-allowed
             disabled:opacity-50
             sm:h-12
-            sm:rounded-xl
             sm:text-base
           "
         >
@@ -128,19 +127,19 @@ export default function ProductInfo({ product }: Props) {
             items-center
             justify-center
             gap-2
-            rounded-lg
-            bg-sky-400
+            border
+            border-slate-200
+            bg-white
             text-sm
             font-semibold
             text-slate-900
             transition-transform
             duration-150
-            hover:bg-sky-300
+            hover:bg-sky-50
             active:scale-[0.98]
             disabled:cursor-not-allowed
             disabled:bg-slate-300
             sm:h-12
-            sm:rounded-xl
             sm:text-base
           "
         >

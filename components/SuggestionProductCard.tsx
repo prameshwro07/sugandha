@@ -13,63 +13,60 @@ export default function SuggestionProductCard({
   product,
 }: Props) {
   return (
-    <Link
-      href={`/product/${product.slug}`}
-      aria-label={`View ${product.name}`}
-    >
-      <article
+   <Link
+  href={`/product/${product.slug}`}
+  aria-label={`View ${product.name}`}
+>
+  <article
+    className="
+      group
+      overflow-hidden
+      bg-white
+      shadow-[0_3px_14px_rgba(15,23,42,0.06)]
+      transition-all
+      duration-300
+      hover:-translate-y-1
+      hover:shadow-[0_8px_22px_rgba(15,23,42,0.10)]
+    "
+  >
+    {/* Product Image */}
+    <div className="relative aspect-square overflow-hidden bg-slate-50">
+      <Image
+        src={product.images[0]}
+        alt={product.name}
+        fill
         className="
-          group
-          overflow-hidden
-          rounded-xl
-          border
-          border-slate-100
-          bg-white
-          shadow-[0_3px_14px_rgba(15,23,42,0.06)]
-          transition-all
+          object-contain
+          p-2
+          transition-transform
           duration-300
-          hover:-translate-y-1
-          hover:shadow-[0_8px_22px_rgba(15,23,42,0.10)]
+          group-hover:scale-105
         "
-      >
-        {/* Product Image */}
-        <div className="relative aspect-square overflow-hidden bg-slate-50">
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            fill
-            className="
-              object-contain
-              p-2
-              transition-transform
-              duration-300
-              group-hover:scale-105
-            "
-            sizes="135px"
-          />
-        </div>
+        sizes="135px"
+      />
+    </div>
 
-        {/* Product Content */}
-        <div className="p-2">
-          <h3 className="truncate text-[11px] font-semibold text-slate-800">
-            {product.name}
-          </h3>
+    {/* Product Content */}
+    <div className="p-2">
+      <h3 className="truncate text-[11px] font-semibold text-slate-800">
+        {product.name}
+      </h3>
 
-          <p className="mt-0.5 truncate text-[9px] text-slate-400">
-            {product.notes}
-          </p>
+      <p className="mt-0.5 truncate text-[9px] text-slate-400">
+        {product.notes}
+      </p>
 
-          <div className="mt-1.5 flex items-center justify-between">
-            <span className="text-[9px] text-slate-500">
-              {product.volume}
-            </span>
+      <div className="mt-1.5 flex items-center justify-between">
+        <span className="text-[9px] text-slate-500">
+          {product.volume}
+        </span>
 
-            <span className="text-[9px] font-semibold text-sky-500">
-              View →
-            </span>
-          </div>
-        </div>
-      </article>
-    </Link>
+        <span className="text-[9px] font-semibold text-sky-500">
+          View →
+        </span>
+      </div>
+    </div>
+  </article>
+</Link>
   );
 }

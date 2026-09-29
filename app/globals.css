@@ -140,3 +140,16 @@ button:disabled {
 .animate-marquee {
   animation: marquee 15s linear infinite;
 }
+
+/* Prevent text/content selection */
+* {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Prevent dragging images */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
